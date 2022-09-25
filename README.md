@@ -1,16 +1,28 @@
-# sticker_swap
+# sticker_swap_client
 
-A new Flutter project.
+> Aplicação do cliente do sistema StickerSwap
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# Requisitos
 
-A few resources to get you started if this is your first Flutter project:
+1. flutter
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Configuração
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Baixe as dependências do projeto:
+
+```
+flutter pub get
+```
+
+2. Configure as váriaveis de ambiente, para isso crie um arquivo .env com:
+
+```
+API_URI = "localhost:8081"
+```
+
+localhost:8081 é o endereço padrão de execução do sticker_swap_server
+
+
+
+
