@@ -84,16 +84,15 @@ class LoginDemoState extends State<LoginDemo> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         child: const Text('Log In'),
-                        onPressed: () {
+                        onPressed: () async{
                           setState(() {
                             RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                           });
-                          login(_email, _password);
-                          if(!_validate){
+                          var jwt = await login(_email.text, _password.text);
+                          if(!_validate || jwt == null){
                             return;
                           }
-
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondRoute()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
                         },
                       )),
                   TextButton(
@@ -112,8 +111,21 @@ class LoginDemoState extends State<LoginDemo> {
 }
 
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+class RandomNumber extends StatefulWidget {
+
+  RandomNumber({this.token});
+
+  String? token = "";
+
+  @override
+  RandomNumberState createState() => RandomNumberState();
+}
+
+
+
+class RandomNumberState extends State<RandomNumber>{
+
+  TextEditingController _randomNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -123,12 +135,23 @@ class SecondRoute extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+                Container(
+                  alignment: Alignment.center,
+                  width: 500,
+                  height: 500,
+                  child: TextField(
+                      decoration: InputDecoration(border: InputBorder.none),
+                      controller: _randomNumber,
+                      readOnly: true
+                  ),
+                ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
+              onPressed: () async {
+                _randomNumber.text = (await getRandomNumber(widget.token))!;
               },
-              child: const Text('Voltar!'),
+              child: const Text('Get!'),
             ),
           ],
         ),
