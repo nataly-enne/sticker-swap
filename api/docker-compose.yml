@@ -11,12 +11,17 @@ services:
       - ./data:/var/lib/mysql
       - ./scripts/init-database.sql:/docker-entrypoint-initdb.d/1.sql
       - ./scripts/fill-database.sql:/docker-entrypoint-initdb.d/2.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     command: "mysqld --lower_case_table_names=1" 
 
   api:
     build: .
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     ports:
       - "${API_PORT}:${API_PORT}"
     environment:

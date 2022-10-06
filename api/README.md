@@ -52,6 +52,6 @@ node src/main.js
 Se você tem docker instalado ignore tudo acima (exceto a definição das váriaveis de ambiente) e execute com:
 
 ```
-docker-compose up -d --build; docker logs -f sticker_swap_server_api_1
+docker-compose up -d --build
 ```
 
