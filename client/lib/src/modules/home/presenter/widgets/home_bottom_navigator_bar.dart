@@ -13,22 +13,22 @@ class HomeBottomNavigatorBar extends BottomNavigationBar{
 
     items: const [
       BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: ImageIcon(AssetImage('assets/images/icon_home.png')),
           label: "",
           tooltip: "Tela Inicial"
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.confirmation_num),
+          icon: ImageIcon(AssetImage('assets/images/icon_figure.png')),
           label: "",
           tooltip: "Escrever..."
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.swap_horiz),
+          icon: ImageIcon(AssetImage('assets/images/icon_change.png')),
           label: "",
           tooltip: "Escrever..."
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.tune),
+          icon: ImageIcon(AssetImage('assets/images/icon_mix.png')),
           label: "",
           tooltip: "Escrever..."
       ),

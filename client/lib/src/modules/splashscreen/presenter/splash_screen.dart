@@ -17,15 +17,19 @@ class _SplashScreenState extends ModularState<SplashScreen, SplashScreenBloc> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 1), controller.verifyAuth);
+    Timer(const Duration(seconds: 2), controller.verifyAuth);
   }
 
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text("Falta fazer o designer"),
+        child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Image.asset('assets/images/background.png')
+        ),
       ),
     );
   }

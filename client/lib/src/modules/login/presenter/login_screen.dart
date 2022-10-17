@@ -23,10 +23,8 @@ class LoginDemoState extends State<LoginDemo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 70),
-                child: FlutterLogo(
-                  size: 40,
-                ),
+                padding: const EdgeInsets.fromLTRB(25, 20, 25, 40),
+                child: Image.asset('assets/images/logo.png'),
               ),
               Container(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
