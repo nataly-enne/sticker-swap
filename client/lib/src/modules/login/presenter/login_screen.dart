@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sticker_swap_client/src/modules/login/config/api.dart';
+import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginDemo extends StatefulWidget {
   @override
   LoginDemoState createState() => LoginDemoState();
 }
 
-class LoginDemoState extends State<LoginDemo> {
+class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _validate = true;
@@ -64,11 +66,14 @@ class LoginDemoState extends State<LoginDemo> {
                       setState(() {
                         RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                       });
+                      debugPrint(_email.text);
+                      debugPrint(_password.text);
                       var jwt = await login(_email.text, _password.text);
                       if(!_validate || jwt == null){
                         return;
                       }
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
+                      controller.verifyAuth();
                     },
                   )),
               TextButton(

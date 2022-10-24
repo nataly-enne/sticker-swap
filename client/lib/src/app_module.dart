@@ -4,13 +4,15 @@ import 'package:sticker_swap_client/src/modules/home/presenter/home_module.dart'
 import 'package:sticker_swap_client/src/modules/login/presenter/login_module.dart';
 import 'package:sticker_swap_client/src/modules/splashscreen/presenter/splash_screen.dart';
 import 'package:sticker_swap_client/src/modules/splashscreen/presenter/splash_screen_bloc.dart';
+import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
 
 class AppModule extends Module{
   @override
   List<Bind> get binds => [
     Bind<Dio>((i)=>Dio()),
 
-    Bind<SplashScreenBloc>((i) => SplashScreenBloc())
+    Bind<SplashScreenBloc>((i) => SplashScreenBloc()),
+    Bind<LoginBloc>((i) => LoginBloc())
   ];
 
   @override
