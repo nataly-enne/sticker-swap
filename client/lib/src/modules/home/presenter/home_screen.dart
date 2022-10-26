@@ -11,12 +11,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: HomeBottomNavigatorBar(
-          selectedIconColor: Theme.of(context).primaryColor
-      ),
+    return StreamBuilder<int>(
+      initialData: 0,
+      stream: controller.getIndexTela,
+      builder: (_, snapshot) {
+        return Scaffold(
+          bottomNavigationBar: HomeBottomNavigatorBar(
+            onTap: controller.mudarTela,
+            indexTelaAtual: snapshot.data!,
+            selectedIconColor: Theme.of(context).primaryColor,
+          ),
+        );
+      }
     );
   }
 }

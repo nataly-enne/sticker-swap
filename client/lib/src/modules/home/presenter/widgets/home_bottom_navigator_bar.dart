@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 class HomeBottomNavigatorBar extends BottomNavigationBar{
-  HomeBottomNavigatorBar({required Color selectedIconColor}): super(
-    currentIndex: 0,
-    onTap: (value){print(value);},
+  HomeBottomNavigatorBar({
+    required int indexTelaAtual,
+    required Function(int) onTap,
+    required Color selectedIconColor
+  }): super(
+    onTap: onTap,
+    currentIndex: indexTelaAtual,
 
     showSelectedLabels: false,
     showUnselectedLabels: false,
-
+    type: BottomNavigationBarType.fixed,
     selectedIconTheme: IconThemeData(color: selectedIconColor),
     unselectedIconTheme: const IconThemeData(color: Colors.black),
 
