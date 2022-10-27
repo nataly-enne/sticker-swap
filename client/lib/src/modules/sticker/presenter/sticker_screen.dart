@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sticker_swap_client/src/modules/sticker/presenter/sticker_bloc.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/element_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/group_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/header_sticker.dart';
@@ -12,7 +14,14 @@ class StickerScreen extends StatefulWidget {
   State<StickerScreen> createState() => _StickerScreenState();
 }
 
-class _StickerScreenState extends State<StickerScreen> {
+class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
