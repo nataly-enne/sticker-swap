@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sticker_swap_client/src/modules/chat/presenter/chat_module.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/home_bloc.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/widgets/home_bottom_navigator_bar.dart';
+import 'package:sticker_swap_client/src/modules/qr_troca/presenter/qr_troca_module.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/sticker_module.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,9 +38,9 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
                       if(snapshot.data == 0)
                         StickerModule(),
                       if(snapshot.data == 1)
-                        Text("Pagina 2"),
+                        QrTrocaModule(),
                       if(snapshot.data == 2)
-                        Text("Pagina 3"),
+                        ChatModule(),
                       if(snapshot.data == 3)
                         Text("Pagina 4"),
 
