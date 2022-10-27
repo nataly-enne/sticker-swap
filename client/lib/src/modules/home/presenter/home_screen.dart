@@ -33,7 +33,14 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
                   child: Column(
                     children: [
                       //Colocar depois demais itens do menu
-                      StickerModule()
+                      if(snapshot.data == 0)
+                        StickerModule(),
+                      if(snapshot.data == 1)
+                        Text("Pagina 2"),
+                      if(snapshot.data == 2)
+                        Text("Pagina 3"),
+                      if(snapshot.data == 3)
+                        Text("Pagina 4"),
 
                     ],
                   ),
