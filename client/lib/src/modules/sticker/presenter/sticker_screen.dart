@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/sticker_bloc.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/element_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/group_sticker.dart';
@@ -42,7 +44,12 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
 
           Row(
             children: [
-              GroupSticker(),
+              GroupSticker(
+                group: StickerGroup(
+                  id: 0,
+                  image: "https..."
+                ),
+              ),
             ],
           ),
 
@@ -50,7 +57,9 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
 
           Row(
             children: [
-              ElementSticker()
+              ElementSticker(
+                sticker: Sticker(id: 0, text: "BRA 20", idGroup: 0, quantity: 1)
+              )
             ],
           ),
         ],

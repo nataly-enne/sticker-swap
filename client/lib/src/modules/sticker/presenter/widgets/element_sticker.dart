@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 
 class ElementSticker extends StatelessWidget {
-  const ElementSticker({Key? key}) : super(key: key);
+  final Sticker sticker;
+  const ElementSticker({Key? key, required this.sticker}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,7 @@ class ElementSticker extends StatelessWidget {
       width: 65,
       height: 45,
       color: Colors.red,
-      child: Center(child: Text("BRA11"),),
+      child: Center(child: Text(sticker.text),),
     );
   }
 }
