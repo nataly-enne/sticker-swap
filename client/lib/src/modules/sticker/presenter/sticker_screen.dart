@@ -49,6 +49,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                   id: 0,
                   image: "https..."
                 ),
+                onTap: controller.selectGroup,
               ),
             ],
           ),
@@ -58,7 +59,9 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
           Row(
             children: [
               ElementSticker(
-                sticker: Sticker(id: 0, text: "BRA 20", idGroup: 0, quantity: 1)
+                sticker: Sticker(id: 0, text: "BRA 20", idGroup: 0, quantity: 1),
+                addSticker: controller.addSticker,
+                removeSticker: controller.removeSticker,
               )
             ],
           ),

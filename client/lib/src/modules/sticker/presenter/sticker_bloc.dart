@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
 
 class StickerBloc{
 
@@ -9,6 +11,12 @@ class StickerBloc{
   void searchSticker(){
     print("Texto Buscado: ${searchController.text}");
   }
+
+  void selectGroup(StickerGroup group){}
+
+  void addSticker(Sticker sticker){}
+  void removeSticker(Sticker sticker){}
+
 
   void dispose(){
     searchController.dispose();

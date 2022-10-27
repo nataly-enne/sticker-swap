@@ -3,7 +3,13 @@ import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_
 
 class GroupSticker extends StatelessWidget {
   final StickerGroup group;
-  const GroupSticker({Key? key, required this.group}) : super(key: key);
+  final Function(StickerGroup) onTap;
+
+  const GroupSticker({
+    Key? key,
+    required this.group,
+    required this.onTap
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

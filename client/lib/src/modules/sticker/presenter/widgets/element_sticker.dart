@@ -3,7 +3,15 @@ import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.
 
 class ElementSticker extends StatelessWidget {
   final Sticker sticker;
-  const ElementSticker({Key? key, required this.sticker}) : super(key: key);
+  final Function(Sticker) addSticker;
+  final Function(Sticker) removeSticker;
+
+  const ElementSticker({
+    Key? key,
+    required this.sticker,
+    required this.addSticker,
+    required this.removeSticker
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
