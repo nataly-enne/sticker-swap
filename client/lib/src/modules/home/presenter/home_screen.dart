@@ -23,9 +23,7 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
-          statusBarColor: Theme.of(context).primaryColor,
-        ),
+        value: SystemUiOverlayStyle(statusBarColor: const Color(0xff9A1032)),
         child: StreamBuilder<int>(
             initialData: 0,
             stream: controller.getIndexTela,
@@ -34,7 +32,9 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
                 body: SafeArea(
                   child: Column(
                     children: [
+                      //Colocar depois demais itens do menu
                       StickerModule()
+
                     ],
                   ),
                 ),

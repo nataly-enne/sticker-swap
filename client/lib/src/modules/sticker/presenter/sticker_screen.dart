@@ -10,6 +10,12 @@ class StickerScreen extends StatefulWidget {
 class _StickerScreenState extends State<StickerScreen> {
   @override
   Widget build(BuildContext context) {
-    return Text("Sticker Page");
+    return Expanded(
+      child: ListView(
+        children: [
+          Text("Sticker Page"),
+        ],
+      ),
+    );
   }
 }
