@@ -6,8 +6,8 @@ class ElementSticker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60,
-      height: 40,
+      width: 65,
+      height: 45,
       color: Colors.red,
       child: Center(child: Text("BRA11"),),
     );

@@ -6,10 +6,10 @@ class GroupSticker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60,
-      height: 60,
-      color: Colors.red,
-      child: Center(child: Text("BRA"),),
+      width: 90,
+      height: 80,
+      color: Colors.green,
+      child: Center(child: Text("Colocar bandeira do brasil"),),
     );
   }
 }

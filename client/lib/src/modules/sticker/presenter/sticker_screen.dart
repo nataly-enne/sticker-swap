@@ -29,9 +29,12 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
         children: [
           HeaderSticker(),
           StickerAlbumProgress(
-            porcentagemCompleta: 0.33,
+              porcentagemCompleta: controller.porcentagemCompleta
           ),
-          SearchSticker(),
+          SearchSticker(
+            controller: controller.searchController,
+            onSearch: controller.searchSticker,
+          ),
 
 
           //Os widgets abaixo são apenas para montar, não serão usados dessa
