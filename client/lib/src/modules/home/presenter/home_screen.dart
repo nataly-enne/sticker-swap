@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/home_bloc.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/widgets/home_bottom_navigator_bar.dart';
+import 'package:sticker_swap_client/src/modules/sticker/presenter/sticker_module.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -30,6 +31,14 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
             stream: controller.getIndexTela,
             builder: (_, snapshot) {
               return Scaffold(
+                body: SafeArea(
+                  child: Column(
+                    children: [
+                      StickerModule()
+                    ],
+                  ),
+                ),
+
                 bottomNavigationBar: HomeBottomNavigatorBar(
                   onTap: controller.mudarTela,
                   indexTelaAtual: snapshot.data!,
