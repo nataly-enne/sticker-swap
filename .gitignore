@@ -50,3 +50,4 @@ client/windows
 client/build
 client/.dart_tool
 *.env
+.metadata
