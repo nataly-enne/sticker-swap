@@ -48,4 +48,5 @@ client/ios
 client/linux
 client/windows
 client/build
+client/.dart_tool
 *.env
