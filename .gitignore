@@ -47,4 +47,5 @@ client/android
 client/ios
 client/linux
 client/windows
+client/build
 *.env
