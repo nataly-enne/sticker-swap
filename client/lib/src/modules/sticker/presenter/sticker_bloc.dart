@@ -14,8 +14,12 @@ class StickerBloc{
 
   void selectGroup(StickerGroup group){}
 
-  void addSticker(Sticker sticker){}
-  void removeSticker(Sticker sticker){}
+  void addSticker(Sticker sticker){
+    print("Adicionou");
+  }
+  void removeSticker(Sticker sticker){
+    print("Removeu");
+  }
 
 
   void dispose(){

@@ -24,7 +24,7 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(statusBarColor: const Color(0xff9A1032)),
+        value: const SystemUiOverlayStyle(statusBarColor: Color(0xff9A1032)),
         child: StreamBuilder<int>(
             initialData: 0,
             stream: controller.getIndexTela,
