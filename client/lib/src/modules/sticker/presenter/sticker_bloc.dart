@@ -14,11 +14,14 @@ class StickerBloc{
 
   void selectGroup(StickerGroup group){}
 
+  void openFilter(){}
+
+
   void addSticker(Sticker sticker){
     print("Adicionou");
   }
-  void removeSticker(Sticker sticker){
-    print("Removeu");
+  void detailsSticker(Sticker sticker){
+    print("Mostrar detalhes");
   }
 
 

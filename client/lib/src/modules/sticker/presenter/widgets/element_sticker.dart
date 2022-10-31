@@ -4,13 +4,13 @@ import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.
 class ElementSticker extends StatelessWidget {
   final Sticker sticker;
   final Function(Sticker) addSticker;
-  final Function(Sticker) removeSticker;
+  final Function(Sticker) detailsSticker;
 
   const ElementSticker({
     Key? key,
     required this.sticker,
     required this.addSticker,
-    required this.removeSticker
+    required this.detailsSticker
   }) : super(key: key);
 
   @override
@@ -37,7 +37,7 @@ class ElementSticker extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: ()=> addSticker(sticker),
-                onLongPress: ()=> removeSticker(sticker),
+                onLongPress: ()=> detailsSticker(sticker),
                 borderRadius: const BorderRadius.all(Radius.circular(25)),
 
                 child: Center(
