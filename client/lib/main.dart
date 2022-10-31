@@ -5,6 +5,6 @@ import 'package:sticker_swap_client/src/app.dart';
 import 'package:sticker_swap_client/src/app_module.dart';
 
 void main() async{
-  await DotEnv().load();
+  await dotenv.load(fileName: ".env");
   runApp(ModularApp(module: AppModule(), child: App(),));
 }
