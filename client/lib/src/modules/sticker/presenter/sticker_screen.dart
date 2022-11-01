@@ -99,7 +99,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                  Row(
                    children: [
                      Padding(
-                       padding: const EdgeInsets.fromLTRB(8, 2, 0, 4),
+                       padding: const EdgeInsets.fromLTRB(8, 6, 0, 4),
                        child: Text(
                          GroupNamesUtils.names[i]!,
                          style: const TextStyle(
