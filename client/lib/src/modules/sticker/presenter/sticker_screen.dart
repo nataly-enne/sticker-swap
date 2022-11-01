@@ -30,6 +30,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
       child: ListView(
         children: [
           HeaderSticker(
+              user: controller.user,
               openFilter: controller.openFilter
           ),
           StickerAlbumProgress(
