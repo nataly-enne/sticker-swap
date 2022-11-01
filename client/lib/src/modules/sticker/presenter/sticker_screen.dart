@@ -10,13 +10,22 @@ import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/search
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/sticker_album_progress.dart';
 
 class StickerScreen extends StatefulWidget {
-  const StickerScreen({Key? key}) : super(key: key);
+
+  final int idModePage;
+  const StickerScreen({Key? key, required this.idModePage})
+      : super(key: key);
 
   @override
   State<StickerScreen> createState() => _StickerScreenState();
 }
 
 class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
+
+  @override
+  void initState() {
+    controller.getAlbum();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -26,6 +35,8 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
 
   @override
   Widget build(BuildContext context) {
+    controller.setIdModePage(widget.idModePage);
+
     return Expanded(
       child: ListView(
         children: [
@@ -45,52 +56,66 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
           //Os widgets abaixo são apenas para montar, não serão usados dessa
           // forma quando forem para o modelo real
 
-          Row(
-            children: [
-              GroupSticker(
-                group: StickerGroup(
-                  id: 0,
-                  name: "[BRA]\nBarsil",
-                  image: "https..."
-                ),
-                onTap: controller.selectGroup,
-              ),
-            ],
-          ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric( horizontal: 5.0, vertical: 10),
-            child: Wrap(
-              direction: Axis.horizontal,
-              alignment: WrapAlignment.start,
-              children: [
-                ElementSticker(
-                  sticker: Sticker(id: 0, text: "BRA 16", idGroup: 0, quantity: 0),
-                  addSticker: controller.addSticker,
-                  detailsSticker: controller.detailsSticker,
-                ),
-                ElementSticker(
-                  sticker: Sticker(id: 0, text: "BRA 17", idGroup: 0, quantity: 20),
-                  addSticker: controller.addSticker,
-                  detailsSticker: controller.detailsSticker,
-                ),
-                ElementSticker(
-                  sticker: Sticker(id: 0, text: "BRA 18", idGroup: 0, quantity: 1),
-                  addSticker: controller.addSticker,
-                  detailsSticker: controller.detailsSticker,
-                ),
-                ElementSticker(
-                  sticker: Sticker(id: 0, text: "BRA 19", idGroup: 0, quantity: 0),
-                  addSticker: controller.addSticker,
-                  detailsSticker: controller.detailsSticker,
-                ),
-                ElementSticker(
-                  sticker: Sticker(id: 0, text: "BRA 20", idGroup: 0, quantity: 2),
-                  addSticker: controller.addSticker,
-                  detailsSticker: controller.detailsSticker,
-                )
-              ],
-            ),
+          StreamBuilder(
+              initialData: widget.idModePage,
+              stream: bloc.getIdModePage,
+              builder: (_, snapshot) {
+                if(snapshot.data == 0) {
+                  return Row(
+                    children: [
+                      GroupSticker(
+                        group: StickerGroup(
+                            id: 0,
+                            name: "[BRA]\nBarsil",
+                            image: "https..."
+                        ),
+                        onTap: controller.selectGroup,
+                      ),
+                    ],
+                  );
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 10),
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      alignment: WrapAlignment.start,
+                      children: [
+                        ElementSticker(
+                          sticker: Sticker(
+                              id: 0, text: "BRA 16", idGroup: 0, quantity: 0),
+                          addSticker: controller.addSticker,
+                          detailsSticker: controller.detailsSticker,
+                        ),
+                        ElementSticker(
+                          sticker: Sticker(
+                              id: 0, text: "BRA 17", idGroup: 0, quantity: 20),
+                          addSticker: controller.addSticker,
+                          detailsSticker: controller.detailsSticker,
+                        ),
+                        ElementSticker(
+                          sticker: Sticker(
+                              id: 0, text: "BRA 18", idGroup: 0, quantity: 1),
+                          addSticker: controller.addSticker,
+                          detailsSticker: controller.detailsSticker,
+                        ),
+                        ElementSticker(
+                          sticker: Sticker(
+                              id: 0, text: "BRA 19", idGroup: 0, quantity: 0),
+                          addSticker: controller.addSticker,
+                          detailsSticker: controller.detailsSticker,
+                        ),
+                        ElementSticker(
+                          sticker: Sticker(
+                              id: 0, text: "BRA 20", idGroup: 0, quantity: 2),
+                          addSticker: controller.addSticker,
+                          detailsSticker: controller.detailsSticker,
+                        )
+                      ],
+                    ),
+                  );
+                }
+              },
           ),
         ],
       ),

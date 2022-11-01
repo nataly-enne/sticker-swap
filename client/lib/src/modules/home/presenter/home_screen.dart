@@ -35,10 +35,8 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
                   child: Column(
                     children: [
                       //Colocar depois demais itens do menu
-                      if(snapshot.data == 0)
-                        StickerModule(),
-                      if(snapshot.data == 1)
-                        Text("Pagina 2"),
+                      if(snapshot.data == 0 || snapshot.data == 1)
+                        StickerModule(idModePage: snapshot.data!,),
                       if(snapshot.data == 2)
                         ChatModule(),
                       if(snapshot.data == 3)
