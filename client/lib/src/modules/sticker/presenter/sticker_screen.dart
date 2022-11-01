@@ -91,8 +91,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
        for(int i =0; i < 38; i++)
          if(controller.albumManager.albumView!.colectionStickers.containsKey(i))
            Padding(
-             padding: const EdgeInsets.symmetric(
-                 horizontal: 5.0, vertical: 10),
+             padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
              child: Wrap(
                direction: Axis.horizontal,
                alignment: WrapAlignment.start,
@@ -100,7 +99,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                  Row(
                    children: [
                      Padding(
-                       padding: const EdgeInsets.only(left: 8.0),
+                       padding: const EdgeInsets.fromLTRB(8, 2, 0, 4),
                        child: Text(
                          GroupNamesUtils.names[i]!,
                          style: const TextStyle(

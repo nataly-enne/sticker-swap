@@ -55,7 +55,9 @@ class StickerBloc{
 
   ///<!Modificações em Stickers>
   void addSticker(Sticker sticker){
-    print("Adicionou");
+    sticker.quantity += 1;
+    _idModePageStream.sink.add(idModePageNow);
+    //Enviar adição para servidor e banco interno
   }
   void detailsSticker(Sticker sticker){
     print("Mostrar detalhes");
