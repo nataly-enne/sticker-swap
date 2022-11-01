@@ -74,46 +74,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                     ],
                   );
                 } else {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 5.0, vertical: 10),
-                    child: Wrap(
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.start,
-                      children: [
-                        ElementSticker(
-                          sticker: Sticker(
-                              id: 0, text: "BRA 16", idGroup: 0, quantity: 0),
-                          addSticker: controller.addSticker,
-                          detailsSticker: controller.detailsSticker,
-                        ),
-                        ElementSticker(
-                          sticker: Sticker(
-                              id: 0, text: "BRA 17", idGroup: 0, quantity: 20),
-                          addSticker: controller.addSticker,
-                          detailsSticker: controller.detailsSticker,
-                        ),
-                        ElementSticker(
-                          sticker: Sticker(
-                              id: 0, text: "BRA 18", idGroup: 0, quantity: 1),
-                          addSticker: controller.addSticker,
-                          detailsSticker: controller.detailsSticker,
-                        ),
-                        ElementSticker(
-                          sticker: Sticker(
-                              id: 0, text: "BRA 19", idGroup: 0, quantity: 0),
-                          addSticker: controller.addSticker,
-                          detailsSticker: controller.detailsSticker,
-                        ),
-                        ElementSticker(
-                          sticker: Sticker(
-                              id: 0, text: "BRA 20", idGroup: 0, quantity: 2),
-                          addSticker: controller.addSticker,
-                          detailsSticker: controller.detailsSticker,
-                        )
-                      ],
-                    ),
-                  );
+                  return _listStickersView();
                 }
               },
           ),
@@ -121,4 +82,47 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
       ),
     );
   }
+
+
+  Column _listStickersView(){
+    return Column(
+      children: [
+       for(int i =0; i < 38; i++)
+         if(controller.albumManager.albumView!.colectionStickers.containsKey(i))
+           Padding(
+             padding: const EdgeInsets.symmetric(
+                 horizontal: 5.0, vertical: 10),
+             child: Wrap(
+               direction: Axis.horizontal,
+               alignment: WrapAlignment.start,
+               children: [
+                 Row(
+                   children: [
+                     Padding(
+                       padding: const EdgeInsets.only(left: 8.0),
+                       child: Text(
+                         "[BRA] Brasil",
+                         style: const TextStyle(
+                           fontWeight: FontWeight.bold,
+                           fontSize: 17
+                         ),
+                       ),
+                     ),
+                   ],
+                 ),
+
+                 for(Sticker sticker in (controller.albumManager.albumView!.colectionStickers[i] as List<Sticker>))
+                   ElementSticker(
+                     sticker: sticker,
+                     addSticker: controller.addSticker,
+                     detailsSticker: controller.detailsSticker,
+                   ),
+               ],
+             ),
+           ),
+      ]
+    );
+  }
+
+
 }

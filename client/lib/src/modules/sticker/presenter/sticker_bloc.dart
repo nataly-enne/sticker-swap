@@ -46,7 +46,9 @@ class StickerBloc{
     print("Texto Buscado: ${searchController.text}");
   }
 
-  void selectGroup(StickerGroup group){}
+  void selectGroup(StickerGroup group){
+    _idModePageStream.sink.add(1);
+  }
 
   void openFilter(){}
 
