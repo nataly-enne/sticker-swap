@@ -29,7 +29,10 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
     return Expanded(
       child: ListView(
         children: [
-          HeaderSticker(),
+          HeaderSticker(
+              user: controller.user,
+              openFilter: controller.openFilter
+          ),
           StickerAlbumProgress(
               porcentagemCompleta: controller.porcentagemCompleta
           ),
@@ -47,6 +50,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
               GroupSticker(
                 group: StickerGroup(
                   id: 0,
+                  name: "[BRA]\nBarsil",
                   image: "https..."
                 ),
                 onTap: controller.selectGroup,
@@ -54,16 +58,39 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
             ],
           ),
 
-          Divider(height: 20,),
-
-          Row(
-            children: [
-              ElementSticker(
-                sticker: Sticker(id: 0, text: "BRA 20", idGroup: 0, quantity: 1),
-                addSticker: controller.addSticker,
-                removeSticker: controller.removeSticker,
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric( horizontal: 5.0, vertical: 10),
+            child: Wrap(
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.start,
+              children: [
+                ElementSticker(
+                  sticker: Sticker(id: 0, text: "BRA 16", idGroup: 0, quantity: 0),
+                  addSticker: controller.addSticker,
+                  detailsSticker: controller.detailsSticker,
+                ),
+                ElementSticker(
+                  sticker: Sticker(id: 0, text: "BRA 17", idGroup: 0, quantity: 20),
+                  addSticker: controller.addSticker,
+                  detailsSticker: controller.detailsSticker,
+                ),
+                ElementSticker(
+                  sticker: Sticker(id: 0, text: "BRA 18", idGroup: 0, quantity: 1),
+                  addSticker: controller.addSticker,
+                  detailsSticker: controller.detailsSticker,
+                ),
+                ElementSticker(
+                  sticker: Sticker(id: 0, text: "BRA 19", idGroup: 0, quantity: 0),
+                  addSticker: controller.addSticker,
+                  detailsSticker: controller.detailsSticker,
+                ),
+                ElementSticker(
+                  sticker: Sticker(id: 0, text: "BRA 20", idGroup: 0, quantity: 2),
+                  addSticker: controller.addSticker,
+                  detailsSticker: controller.detailsSticker,
+                )
+              ],
+            ),
           ),
         ],
       ),
