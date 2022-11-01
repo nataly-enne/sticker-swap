@@ -8,6 +8,7 @@ import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/group_
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/header_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/search_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/sticker_album_progress.dart';
+import 'package:sticker_swap_client/src/utils/consts/group_names_utils.dart';
 
 class StickerScreen extends StatefulWidget {
 
@@ -101,7 +102,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                      Padding(
                        padding: const EdgeInsets.only(left: 8.0),
                        child: Text(
-                         "[BRA] Brasil",
+                         GroupNamesUtils.names[i]!,
                          style: const TextStyle(
                            fontWeight: FontWeight.bold,
                            fontSize: 17
