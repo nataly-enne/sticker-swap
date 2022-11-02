@@ -8,6 +8,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: "Sigaa",
+      debugShowCheckedModeBanner: false,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
 
