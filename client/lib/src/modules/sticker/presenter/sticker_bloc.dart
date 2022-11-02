@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/album.dart';
@@ -7,6 +7,7 @@ import 'package:sticker_swap_client/src/core/user.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/usecases/get_album.dart';
+import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/bottom_sheet_sticker.dart';
 
 class StickerBloc{
 
@@ -59,8 +60,27 @@ class StickerBloc{
     _idModePageStream.sink.add(idModePageNow);
     //Enviar adição para servidor e banco interno
   }
+
+  void removeSticker(Sticker sticker){
+    sticker.quantity -= 1;
+    _idModePageStream.sink.add(idModePageNow);
+    //Enviar adição para servidor e banco interno
+  }
+
   void detailsSticker(Sticker sticker){
-    print("Mostrar detalhes");
+    showModalBottomSheet<dynamic>(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
+            topLeft:  Radius.circular(12.0),
+            topRight:  Radius.circular(12.0)
+        )),
+        backgroundColor: Colors.white,
+        context: Modular.routerDelegate.navigatorKey.currentContext!,
+        builder: (_) => BottomSheetSticker(
+          sticker: sticker,
+          removeSticker: removeSticker,
+          openDetails: (Sticker sticker){print("Abir detalhes");},
+        )
+    );
   }
 
 
