@@ -8,15 +8,25 @@ import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/group_
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/header_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/search_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/sticker_album_progress.dart';
+import 'package:sticker_swap_client/src/utils/consts/group_names_utils.dart';
 
 class StickerScreen extends StatefulWidget {
-  const StickerScreen({Key? key}) : super(key: key);
+
+  final int idModePage;
+  const StickerScreen({Key? key, required this.idModePage})
+      : super(key: key);
 
   @override
   State<StickerScreen> createState() => _StickerScreenState();
 }
 
 class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
+
+  @override
+  void initState() {
+    controller.getAlbum();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -26,10 +36,15 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
 
   @override
   Widget build(BuildContext context) {
+    controller.setIdModePage(widget.idModePage);
+
     return Expanded(
       child: ListView(
         children: [
-          HeaderSticker(),
+          HeaderSticker(
+              user: controller.user,
+              openFilter: controller.openFilter
+          ),
           StickerAlbumProgress(
               porcentagemCompleta: controller.porcentagemCompleta
           ),
@@ -42,31 +57,72 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
           //Os widgets abaixo são apenas para montar, não serão usados dessa
           // forma quando forem para o modelo real
 
-          Row(
-            children: [
-              GroupSticker(
-                group: StickerGroup(
-                  id: 0,
-                  image: "https..."
-                ),
-                onTap: controller.selectGroup,
-              ),
-            ],
-          ),
-
-          Divider(height: 20,),
-
-          Row(
-            children: [
-              ElementSticker(
-                sticker: Sticker(id: 0, text: "BRA 20", idGroup: 0, quantity: 1),
-                addSticker: controller.addSticker,
-                removeSticker: controller.removeSticker,
-              )
-            ],
+          StreamBuilder(
+              initialData: widget.idModePage,
+              stream: bloc.getIdModePage,
+              builder: (_, snapshot) {
+                if(snapshot.data == 0) {
+                  return Row(
+                    children: [
+                      GroupSticker(
+                        group: StickerGroup(
+                            id: 0,
+                            name: "[BRA]\nBarsil",
+                            image: "https..."
+                        ),
+                        onTap: controller.selectGroup,
+                      ),
+                    ],
+                  );
+                } else {
+                  return _listStickersView();
+                }
+              },
           ),
         ],
       ),
     );
   }
+
+
+  Column _listStickersView(){
+    return Column(
+      children: [
+       for(int i =0; i < 38; i++)
+         if(controller.albumManager.albumView!.colectionStickers.containsKey(i))
+           Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
+             child: Wrap(
+               direction: Axis.horizontal,
+               alignment: WrapAlignment.start,
+               children: [
+                 Row(
+                   children: [
+                     Padding(
+                       padding: const EdgeInsets.fromLTRB(8, 6, 0, 4),
+                       child: Text(
+                         GroupNamesUtils.names[i]!,
+                         style: const TextStyle(
+                           fontWeight: FontWeight.bold,
+                           fontSize: 17
+                         ),
+                       ),
+                     ),
+                   ],
+                 ),
+
+                 for(Sticker sticker in (controller.albumManager.albumView!.colectionStickers[i] as List<Sticker>))
+                   ElementSticker(
+                     sticker: sticker,
+                     addSticker: controller.addSticker,
+                     detailsSticker: controller.detailsSticker,
+                   ),
+               ],
+             ),
+           ),
+      ]
+    );
+  }
+
+
 }

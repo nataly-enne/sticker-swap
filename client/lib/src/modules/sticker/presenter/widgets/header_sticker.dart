@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sticker_swap_client/src/core/user.dart';
 
 class HeaderSticker extends StatelessWidget {
-  const HeaderSticker({Key? key}) : super(key: key);
+  final User user;
+  final Function() openFilter;
+
+  const HeaderSticker({
+    Key? key,
+    required this.user,
+    required this.openFilter
+  }) : super(key: key);
 
   final double heightBackground = 200;
   final double heightProfile = 130;
