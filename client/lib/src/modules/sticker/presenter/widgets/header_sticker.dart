@@ -11,7 +11,7 @@ class HeaderSticker extends StatelessWidget {
     required this.openFilter
   }) : super(key: key);
 
-  final double heightBackground = 190;
+  final double heightBackground = 180;
   final double heightProfile = 130;
 
   @override
@@ -40,7 +40,7 @@ class HeaderSticker extends StatelessWidget {
           ),
           Positioned(
             top: heightBackground - (85 % heightProfile),
-            left: 25,
+            left: 40,
             child: buildProfileImage(),
           )
         ],
