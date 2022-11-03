@@ -31,7 +31,7 @@ class GroupSticker extends StatelessWidget {
                 image: group.isImageIcon
                     ? null
                     : DecorationImage(
-                        image: NetworkImage(group.image,),
+                        image: AssetImage(group.image,),
                         fit: BoxFit.cover
                       )
               ),

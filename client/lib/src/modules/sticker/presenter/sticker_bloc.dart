@@ -43,6 +43,9 @@ class StickerBloc{
   ///<!Funções da interface>
   void setIdModePage(int newIdModePage){
     if(newIdModePage != idModePageNow){
+      firstGroup= LimitsGroupUtils.firstGroup;
+      lastGroup= LimitsGroupUtils.lastGroup;
+
       idModePageNow = newIdModePage;
       _idModePageStream.sink.add(idModePageNow);
     }
