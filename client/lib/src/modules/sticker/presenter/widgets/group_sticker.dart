@@ -13,11 +13,43 @@ class GroupSticker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 90,
-      height: 80,
-      color: Colors.green,
-      child: Center(child: Text("Colocar bandeira do pais"),),
+    return SizedBox(
+      width: 125,
+      height: 135,
+      child: Column(
+        children: [
+          InkWell(
+            onTap: ()=> onTap(group),
+            borderRadius: BorderRadius.circular(20),
+
+            child: Ink(
+              width: 95,
+              height: 75,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(20),
+                image: group.isImageIcon
+                    ? null
+                    : DecorationImage(
+                        image: NetworkImage(group.image,),
+                        fit: BoxFit.cover
+                      )
+              ),
+              child: group.isImageIcon
+                  ? Padding(padding: const EdgeInsets.all(20.0), child: Image.asset(group.image),)
+                  : null,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top:6.0),
+            child: Text(
+              group.name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
