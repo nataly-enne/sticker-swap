@@ -24,17 +24,17 @@ class HomeBottomNavigatorBar extends BottomNavigationBar{
       BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('assets/images/icon_figure.png')),
           label: "",
-          tooltip: "Escrever..."
+          tooltip: "Figurinhas"
       ),
       BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('assets/images/icon_change.png')),
           label: "",
-          tooltip: "Escrever..."
+          tooltip: "Trocas"
       ),
       BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('assets/images/icon_mix.png')),
           label: "",
-          tooltip: "Escrever..."
+          tooltip: "Configurações"
       ),
     ],
   );

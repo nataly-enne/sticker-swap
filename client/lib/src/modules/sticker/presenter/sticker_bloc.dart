@@ -8,6 +8,7 @@ import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/usecases/get_album.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/bottom_sheet_sticker.dart';
+import 'package:sticker_swap_client/src/utils/consts/limits_group_utils.dart';
 
 class StickerBloc{
 
@@ -15,6 +16,9 @@ class StickerBloc{
   AlbumManager albumManager = Modular.get<AlbumManager>();
 
   IGetAlbum getAlbumUsecase = Modular.get<IGetAlbum>();
+
+  int firstGroup= LimitsGroupUtils.firstGroup;
+  int lastGroup= LimitsGroupUtils.lastGroup;
 
   int idModePageNow = 0;
   final BehaviorSubject<int> _idModePageStream = BehaviorSubject.seeded(0);
@@ -49,6 +53,14 @@ class StickerBloc{
   }
 
   void selectGroup(StickerGroup group){
+    if(group.id >= 0){
+      firstGroup = group.id;
+      lastGroup = group.id;
+    }else{
+      firstGroup= LimitsGroupUtils.firstGroup;
+      lastGroup= LimitsGroupUtils.lastGroup;
+    }
+
     _idModePageStream.sink.add(1);
   }
 

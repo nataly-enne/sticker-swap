@@ -9,6 +9,7 @@ import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/header
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/search_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/sticker_album_progress.dart';
 import 'package:sticker_swap_client/src/utils/consts/group_names_utils.dart';
+import 'package:sticker_swap_client/src/utils/consts/group_sticker_utils.dart';
 
 class StickerScreen extends StatefulWidget {
 
@@ -69,18 +70,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
               stream: bloc.getIdModePage,
               builder: (_, snapshot) {
                 if(snapshot.data == 0) {
-                  return Row(
-                    children: [
-                      GroupSticker(
-                        group: StickerGroup(
-                            id: 0,
-                            name: "[BRA]\nBarsil",
-                            image: "https..."
-                        ),
-                        onTap: controller.selectGroup,
-                      ),
-                    ],
-                  );
+                  return _listGroupsSticker();
                 } else {
                   return _listStickersView();
                 }
@@ -92,10 +82,27 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
   }
 
 
+  Widget _listGroupsSticker(){
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 20, 12, 5),
+      child: Wrap(
+        direction: Axis.horizontal,
+        alignment: WrapAlignment.center,
+        children: [
+          for(StickerGroup group in GroupStickerUtils.list)
+            GroupSticker(
+              group: group,
+              onTap: controller.selectGroup,
+            ),
+        ],
+      ),
+    );
+  }
+
   Column _listStickersView(){
     return Column(
       children: [
-       for(int i =0; i < 38; i++)
+       for(int i = controller.firstGroup; i <= controller.lastGroup; i++)
          if(controller.albumManager.albumView!.colectionStickers.containsKey(i))
            Padding(
              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
