@@ -11,8 +11,6 @@ import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/bottom
 
 class StickerBloc{
 
-  double porcentagemCompleta = 0.33;
-
   User user = Modular.get<User>();
   AlbumManager albumManager = Modular.get<AlbumManager>();
 
@@ -20,8 +18,11 @@ class StickerBloc{
 
   int idModePageNow = 0;
   final BehaviorSubject<int> _idModePageStream = BehaviorSubject.seeded(0);
+  final BehaviorSubject<bool> _statusStream = BehaviorSubject();
 
   Stream<int> get getIdModePage => _idModePageStream.stream;
+  Stream<bool> get getStatus => _statusStream.stream;
+
 
   TextEditingController searchController = TextEditingController();
 
@@ -57,13 +58,28 @@ class StickerBloc{
   ///<!Modificações em Stickers>
   void addSticker(Sticker sticker){
     sticker.quantity += 1;
+
+    if(sticker.quantity == 1)
+      albumManager.obtidas++;
+    else
+      albumManager.repetidas++;
+
+
     _idModePageStream.sink.add(idModePageNow);
+    _statusStream.sink.add(true);
     //Enviar adição para servidor e banco interno
   }
 
   void removeSticker(Sticker sticker){
     sticker.quantity -= 1;
+
+    if(sticker.quantity == 0)
+      albumManager.obtidas--;
+    else
+      albumManager.repetidas--;
+
     _idModePageStream.sink.add(idModePageNow);
+    _statusStream.sink.add(true);
     //Enviar adição para servidor e banco interno
   }
 
@@ -87,6 +103,7 @@ class StickerBloc{
   void dispose(){
     searchController.dispose();
     _idModePageStream.close();
+    _statusStream.close();
   }
 
 }

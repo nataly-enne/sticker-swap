@@ -45,8 +45,15 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
               user: controller.user,
               openFilter: controller.openFilter
           ),
-          StickerAlbumProgress(
-              porcentagemCompleta: controller.porcentagemCompleta
+          StreamBuilder<bool>(
+            stream: controller.getStatus,
+            builder: (_, snapshot) {
+              return StickerAlbumProgress(
+                unicas: controller.albumManager.unicas,
+                obitidas: controller.albumManager.obtidas,
+                repetidas: controller.albumManager.repetidas,
+              );
+            }
           ),
           SearchSticker(
             controller: controller.searchController,
