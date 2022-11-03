@@ -102,7 +102,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
   Column _listStickersView(){
     return Column(
       children: [
-       for(int i =0; i < 38; i++)
+       for(int i = controller.firstGroup; i <= controller.lastGroup; i++)
          if(controller.albumManager.albumView!.colectionStickers.containsKey(i))
            Padding(
              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
