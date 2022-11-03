@@ -23,12 +23,9 @@ class GetAlbumImpl extends IGetAlbum{
         Sticker(id: 5, text: "FWC 6", idGroup: 0, quantity: 0),
         Sticker(id: 5, text: "FWC 7", idGroup: 0, quantity: 2),
       ],
-      26 : [
-        Sticker(id: 1, text: "BRA 16", idGroup: 26, quantity: 0),
-        Sticker(id: 2, text: "BRA 17", idGroup: 26, quantity: 20),
-        Sticker(id: 3, text: "BRA 18", idGroup: 26, quantity: 1),
-        Sticker(id: 4, text: "BRA 19", idGroup: 26, quantity: 0),
-        Sticker(id: 5, text: "BRA 20", idGroup: 26, quantity: 2),
+      27 : [
+        for(int i=1; i<=20; i++)
+          Sticker(id: i, text: "BRA $i", idGroup: 27, quantity: i%3),
       ]
     };
 

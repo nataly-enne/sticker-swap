@@ -36,11 +36,11 @@ class GroupStickerUtils{
     StickerGroup(id: 27, name: "[BRA]\nBrasil", image: "assets/images/bandeiras/Brasil.png"),
     StickerGroup(id: 28, name: "[SRB]\nEscreve...", image: "assets/images/bandeiras/Sérvia.png"),
     StickerGroup(id: 29, name: "[SUI]\nEscreve...", image: "assets/images/bandeiras/Suíça.png"),
-    StickerGroup(id: 30, name: "[CMR]\nBrasil", image: "assets/images/bandeiras/camarões.png"),
+    StickerGroup(id: 30, name: "[CMR]\nEscreve...", image: "assets/images/bandeiras/camarões.png"),
     StickerGroup(id: 31, name: "[POR]\nEscreve...", image: "assets/images/bandeiras/portugal.png"),
-    StickerGroup(id: 32, name: "[GHA]\nBrasil", image: "assets/images/bandeiras/gana.png"),
-    StickerGroup(id: 33, name: "[URU]\nBrasil", image: "assets/images/bandeiras/Uruguai.png"),
-    StickerGroup(id: 34, name: "[KOR]\nBrasil", image: "assets/images/bandeiras/COREIA DO SUL.png"),
+    StickerGroup(id: 32, name: "[GHA]\nEscreve...", image: "assets/images/bandeiras/gana.png"),
+    StickerGroup(id: 33, name: "[URU]\nEscreve...", image: "assets/images/bandeiras/Uruguai.png"),
+    StickerGroup(id: 34, name: "[KOR]\nEscreve...", image: "assets/images/bandeiras/COREIA DO SUL.png"),
   ];
 
 
