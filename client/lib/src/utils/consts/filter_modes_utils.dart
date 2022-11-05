@@ -1,6 +1,8 @@
+import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
+
 class FilterModesUtils{
-  static const int all = 0;
-  static const int onlyMissing = 1;
-  static const int onlyRepeated = 2;
-  static const int onlyObtained = 3;
+  static bool all(Sticker sticker)=> true;
+  static bool onlyMissing(Sticker sticker)=> sticker.quantity == 0;
+  static bool onlyRepeated(Sticker sticker)=> sticker.quantity > 1;
+  static bool onlyObtained(Sticker sticker)=> sticker.quantity > 0;
 }
