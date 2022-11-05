@@ -20,13 +20,16 @@ class Filter{
     for(int i =0; i < 38; i++){
       sticksGroup.clear();
 
-      if(album.colectionStickers.containsKey(i))
-        for(Sticker sticker in (album.colectionStickers[i] as List<Sticker>))
+      if(album.colectionStickers.containsKey(i)){
+        for(Sticker sticker in (album.colectionStickers[i] as List<Sticker>)) {
           if(modeFilter(sticker))
             sticksGroup.add(sticker);
+        }
+      }
 
-      if(sticksGroup.length > 0)
+      if(sticksGroup.isNotEmpty)
         albumView.colectionStickers[i] = sticksGroup;
+
     }
 
     return albumView;

@@ -32,5 +32,8 @@ class AlbumManager{
     }
   }
 
+  void setAlbumView(Album otherAlbum){
+    albumView = otherAlbum;
+  }
 
 }
