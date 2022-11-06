@@ -23,42 +23,58 @@ class _FilterScreenState extends ModularState<FilterScreen, FilterBloc> {
       children: [
         AppBarBottomSheet("Filtros", context),
 
-        StreamBuilder<int>(
-          initialData: 0,
-          stream: controller.getModeFilter,
+        StreamBuilder<bool>(
+          initialData: false,
+          stream: controller.isLoading,
           builder: (_, snapshot) {
+            if(snapshot.data!)
+              return const Center(child: CircularProgressIndicator(),);
+            else
             return Column(
               children: [
-                RadioListTile(
-                  value: FilterModesUtils.all,
-                  groupValue: snapshot.data,
-                  onChanged:controller.setFilter,
-                  title: Text("Mostrar todos"),
+                StreamBuilder<int>(
+                  initialData: 0,
+                  stream: controller.getModeFilter,
+                  builder: (_, snapshot) {
+                    return Column(
+                      children: [
+                        RadioListTile(
+                          value: FilterModesUtils.all,
+                          groupValue: snapshot.data,
+                          onChanged:controller.setFilter,
+                          title: Text("Mostrar todos"),
+                        ),
+                        RadioListTile(
+                          value: FilterModesUtils.onlyMissing,
+                          groupValue: snapshot.data,
+                          onChanged:controller.setFilter,
+                          title: Text("Somente faltantes"),
+                        ),
+                        RadioListTile(
+                          value: FilterModesUtils.onlyObtained,
+                          groupValue: snapshot.data,
+                          onChanged:controller.setFilter,
+                          title: Text("Somente obitidas"),
+                        ),
+                        RadioListTile(
+                          value: FilterModesUtils.onlyRepeated,
+                          groupValue: snapshot.data,
+                          onChanged:controller.setFilter,
+                          title: Text("Somente repetidas"),
+                        ),
+                      ],
+                    );
+                  },
                 ),
-                RadioListTile(
-                  value: FilterModesUtils.onlyMissing,
-                  groupValue: snapshot.data,
-                  onChanged:controller.setFilter,
-                  title: Text("Somente faltantes"),
-                ),
-                RadioListTile(
-                  value: FilterModesUtils.onlyObtained,
-                  groupValue: snapshot.data,
-                  onChanged:controller.setFilter,
-                  title: Text("Somente obitidas"),
-                ),
-                RadioListTile(
-                  value: FilterModesUtils.onlyRepeated,
-                  groupValue: snapshot.data,
-                  onChanged:controller.setFilter,
-                  title: Text("Somente repetidas"),
-                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(onPressed: controller.filterStickers, child: Text("Filtrar")),
+                )
               ],
             );
           },
         ),
-
-        //TextButton(onPressed: controller.filterStickers, child: Text("Filtrar"))
       ],
     );
   }

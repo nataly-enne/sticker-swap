@@ -4,7 +4,6 @@ import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/entities/album.dart';
 import 'package:sticker_swap_client/src/core/entities/album_manager.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
-import 'package:sticker_swap_client/src/modules/filter/domain/entities/filter.dart';
 import 'package:sticker_swap_client/src/modules/filter/presenter/filter_module.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
@@ -76,6 +75,7 @@ class StickerBloc{
             topRight:  Radius.circular(12.0)
         )),
         backgroundColor: Colors.white,
+        isScrollControlled: true,
         context: Modular.routerDelegate.navigatorKey.currentContext!,
         builder: (_) => FilterModule()
     );
