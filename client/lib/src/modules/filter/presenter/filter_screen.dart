@@ -11,6 +11,13 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends ModularState<FilterScreen, FilterBloc> {
 
+
+  @override
+  void initState() {
+    controller.initFilter();
+    super.initState();
+  }
+
   @override
   void dispose() {
     controller.dispose();

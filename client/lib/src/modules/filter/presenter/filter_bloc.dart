@@ -17,6 +17,10 @@ class FilterBloc{
   Stream<int> get getModeFilter => _modeFilterStream.stream;
   Stream<bool> get isLoading => _loadingStream.stream;
 
+  void initFilter(){
+    _modeFilterStream.sink.add(filter.modeFilter);
+  }
+
   void setFilter(int? modeFilter){
     filter.setFilterAlbum(modeFilter!);
     _modeFilterStream.sink.add(modeFilter);

@@ -75,7 +75,6 @@ class StickerBloc{
             topRight:  Radius.circular(12.0)
         )),
         backgroundColor: Colors.white,
-        isScrollControlled: true,
         context: Modular.routerDelegate.navigatorKey.currentContext!,
         builder: (_) => FilterModule()
     );
