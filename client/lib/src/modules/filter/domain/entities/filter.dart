@@ -28,7 +28,7 @@ class Filter{
       }
 
       if(sticksGroup.isNotEmpty)
-        albumView.colectionStickers[i] = sticksGroup;
+        albumView.colectionStickers[i] = List.from(sticksGroup);
 
     }
 

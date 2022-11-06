@@ -4,6 +4,8 @@ import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/album.dart';
 import 'package:sticker_swap_client/src/core/album_manager.dart';
 import 'package:sticker_swap_client/src/core/user.dart';
+import 'package:sticker_swap_client/src/modules/filter/domain/entities/filter.dart';
+import 'package:sticker_swap_client/src/modules/filter/presenter/filter_module.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/usecases/get_album.dart';
@@ -67,7 +69,19 @@ class StickerBloc{
     _idModePageStream.sink.add(1);
   }
 
-  void openFilter(){}
+  void openFilter() async{
+    await showModalBottomSheet<dynamic>(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
+            topLeft:  Radius.circular(12.0),
+            topRight:  Radius.circular(12.0)
+        )),
+        backgroundColor: Colors.white,
+        context: Modular.routerDelegate.navigatorKey.currentContext!,
+        builder: (_) => FilterModule()
+    );
+
+    _idModePageStream.sink.add(1);
+  }
 
 
   ///<!Modificações em Stickers>
@@ -80,7 +94,7 @@ class StickerBloc{
       albumManager.repetidas++;
 
 
-    _idModePageStream.sink.add(idModePageNow);
+    _idModePageStream.sink.add(1);
     _statusStream.sink.add(true);
     //Enviar adição para servidor e banco interno
   }
@@ -93,7 +107,7 @@ class StickerBloc{
     else
       albumManager.repetidas--;
 
-    _idModePageStream.sink.add(idModePageNow);
+    _idModePageStream.sink.add(1);
     _statusStream.sink.add(true);
     //Enviar adição para servidor e banco interno
   }
