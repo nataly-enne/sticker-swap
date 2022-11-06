@@ -1,4 +1,4 @@
-import 'package:sticker_swap_client/src/core/album.dart';
+import 'package:sticker_swap_client/src/core/entities/album.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 
 class AlbumManager{

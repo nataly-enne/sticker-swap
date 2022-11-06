@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:sticker_swap_client/src/core/album.dart';
-import 'package:sticker_swap_client/src/core/album_manager.dart';
-import 'package:sticker_swap_client/src/core/user.dart';
+import 'package:sticker_swap_client/src/core/entities/album.dart';
+import 'package:sticker_swap_client/src/core/entities/album_manager.dart';
+import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/filter/domain/entities/filter.dart';
 import 'package:sticker_swap_client/src/modules/filter/presenter/filter_module.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';

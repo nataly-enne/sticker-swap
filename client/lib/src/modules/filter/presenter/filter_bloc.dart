@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sticker_swap_client/src/core/album.dart';
-import 'package:sticker_swap_client/src/core/album_manager.dart';
+import 'package:rxdart/subjects.dart';
+import 'package:sticker_swap_client/src/core/entities/album.dart';
+import 'package:sticker_swap_client/src/core/entities/album_manager.dart';
 import 'package:sticker_swap_client/src/modules/filter/domain/entities/filter.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 import 'package:sticker_swap_client/src/utils/consts/filter_modes_utils.dart';
@@ -10,11 +11,25 @@ class FilterBloc{
   Filter filter = Modular.get<Filter>();
   AlbumManager albumManager = Modular.get<AlbumManager>();
 
+  final BehaviorSubject<int> _modeFilterStream = BehaviorSubject.seeded(0);
+  final BehaviorSubject<bool> _loadingStream = BehaviorSubject.seeded(false);
+
+  Stream<int> get getModeFilter => _modeFilterStream.stream;
+  Stream<bool> get isLoading => _loadingStream.stream;
+
+  void setFilter(int? modeFilter){
+    filter.setFilterAlbum(modeFilter!);
+    _modeFilterStream.sink.add(modeFilter);
+  }
+
   void filterStickers(){
+    _loadingStream.sink.add(true);
     bool Function(Sticker) functionFilter = FilterModesUtils.filterFunction[filter.modeFilter] as bool Function(Sticker);
 
     Album album = applyFliter(albumManager.album, functionFilter);
     albumManager.setAlbumView(album);
+
+    _loadingStream.sink.add(false);
 
     Modular.to.pop();
   }
@@ -48,6 +63,9 @@ class FilterBloc{
     return albumView;
   }
 
-  void dispose(){}
+  void dispose(){
+    _loadingStream.close();
+    _modeFilterStream.close();
+  }
 
 }
