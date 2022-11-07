@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sticker_swap_client/src/core/user.dart';
+import 'package:sticker_swap_client/src/core/entities/user.dart';
 
 class HeaderSticker extends StatelessWidget {
   final User user;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sticker_swap_client/src/core/components/app_bar_bottom_sheet.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 
 class BottomSheetSticker extends StatelessWidget {
@@ -21,16 +22,7 @@ class BottomSheetSticker extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          AppBar(
-            title: Text(sticker.text, style: const TextStyle(color: Colors.black)),
-            leading: IconButton(
-                onPressed: ()=> Navigator.of(context).pop(),
-                icon: const Icon(Icons.close, color: Colors.black,)
-            ),
-            backgroundColor: Colors.transparent,
-            centerTitle: true,
-            elevation: 0.0,
-          ),
+          AppBarBottomSheet(sticker.text, context),
 
           Row(
             children: [
