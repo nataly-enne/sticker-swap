@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
@@ -9,6 +10,8 @@ class ChatBloc{
   final User _user = Modular.get<User>();
   final IGetChats _getChatsUseCase = Modular.get<IGetChats>();
 
+  TextEditingController searchController = TextEditingController();
+
   final BehaviorSubject<List<Chat>> _chatsStream = BehaviorSubject();
   Stream<List<Chat>> get getChatsView => _chatsStream.stream;
 
@@ -18,8 +21,14 @@ class ChatBloc{
     _chatsStream.sink.add(chats);
   }
 
+  void openChat(Chat chat){}
+
+  void onSearch(){}
+
+
   void dispose(){
     _chatsStream.close();
+    searchController.dispose();
   }
 
 }

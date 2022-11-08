@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
 import 'package:sticker_swap_client/src/modules/chat/presenter/chat_bloc.dart';
 import 'package:sticker_swap_client/src/modules/chat/presenter/widgets/chat_tile.dart';
+import 'package:sticker_swap_client/src/modules/chat/presenter/widgets/search_chat.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -37,7 +38,10 @@ class _ChatScreenState extends ModularState<ChatScreen, ChatBloc> {
 
         body: Column(
           children: [
-            //Colocar search aqui
+            SearchChat(
+                onSearch: controller.onSearch,
+                controller: controller.searchController
+            ),
 
             StreamBuilder<List<Chat>>(
               stream: controller.getChatsView,
@@ -46,7 +50,10 @@ class _ChatScreenState extends ModularState<ChatScreen, ChatBloc> {
                   return Expanded(
                     child: ListView.builder(
                       itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) => ChatTile(chat: snapshot.data![index]),
+                      itemBuilder: (context, index) => ChatTile(
+                        chat: snapshot.data![index],
+                        onTap: controller.openChat,
+                      ),
                     ),
                   );
                 }else{

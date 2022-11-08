@@ -4,8 +4,11 @@ import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
 class ChatTile extends StatelessWidget {
 
   final Chat chat;
+  final Function(Chat chat) onTap;
+
   const ChatTile({
     required this.chat,
+    required this.onTap,
     Key? key
   }) : super(key: key);
 
