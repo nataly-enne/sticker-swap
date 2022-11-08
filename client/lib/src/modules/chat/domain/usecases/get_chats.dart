@@ -8,7 +8,7 @@ abstract class IGetChats{
 
 }
 
-class GetChats implements IGetChats{
+class GetChatsImpl implements IGetChats{
 
   @override
   Future<List<Chat>> call({required int idUser}) async{
