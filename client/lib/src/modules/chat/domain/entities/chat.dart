@@ -1,7 +1,7 @@
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/message.dart';
 
 class Chat{
-  String id;
+  int id;
   String name;
   String image;
   Message lastMessage;

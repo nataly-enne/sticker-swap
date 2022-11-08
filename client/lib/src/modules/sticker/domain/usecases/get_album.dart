@@ -3,13 +3,13 @@ import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.
 
 abstract class IGetAlbum{
 
-  Future<Album> call({required idUser});
+  Future<Album> call({required int idUser});
 
 }
 
 class GetAlbumImpl extends IGetAlbum{
   @override
-  Future<Album> call({required idUser}) async{
+  Future<Album> call({required int idUser}) async{
     Album album = Album();
 
     album.colectionStickers = {
