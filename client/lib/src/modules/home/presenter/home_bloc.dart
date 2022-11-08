@@ -8,7 +8,7 @@ class HomeBloc{
   Stream<int> get getIndexTela => _intexTelaStream.stream;
 
   void mudarTela(int indexNovaTela){
-    if(indexNovaTela != indexTelaAtual){
+    if(indexNovaTela != indexTelaAtual || indexNovaTela == 0){
       indexTelaAtual = indexNovaTela;
       _intexTelaStream.sink.add(indexTelaAtual);
     }
