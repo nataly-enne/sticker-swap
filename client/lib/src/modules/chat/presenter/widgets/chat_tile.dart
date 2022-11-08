@@ -15,6 +15,7 @@ class ChatTile extends StatelessWidget {
       leading: Image.network(chat.image),
       title: Text(chat.name),
       subtitle: Text(chat.lastMessage.message),
+      onTap: (){},
     );
   }
 }
