@@ -4,6 +4,7 @@ import 'package:sticker_swap_client/src/core/entities/album_manager.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/home_module.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_module.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/presenter/message_chat_module.dart';
 import 'package:sticker_swap_client/src/modules/splashscreen/presenter/splash_screen.dart';
 import 'package:sticker_swap_client/src/modules/splashscreen/presenter/splash_screen_bloc.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
@@ -35,6 +36,11 @@ class AppModule extends Module{
     ModuleRoute(
         '/home',
         module: HomeModule(),
+        transition: TransitionType.fadeIn
+    ),
+    ModuleRoute(
+        '/message_chat',
+        module: MessageChatModule(),
         transition: TransitionType.fadeIn
     )
   ];
