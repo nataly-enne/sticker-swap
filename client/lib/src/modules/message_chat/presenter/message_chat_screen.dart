@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
+import 'package:sticker_swap_client/src/modules/chat/domain/entities/message.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/message_chat_bloc.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/bottom_message_chat.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_tile.dart';
 
 class MessageChatScreen extends StatefulWidget {
-  const MessageChatScreen({Key? key}) : super(key: key);
+  final Chat chat;
+  const MessageChatScreen({Key? key, required this.chat}) : super(key: key);
 
   @override
   State<MessageChatScreen> createState() => _MessageChatScreenState();
 }
 
 class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageChatBloc> {
+
+
+  @override
+  void initState() {
+    controller.getMessages(widget.chat);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +40,19 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-              child: ListView(
-                children: [
-                  MessageTile()
+              child: StreamBuilder<List<Message>>(
+                stream: controller.getMessagesView,
+                builder: (_, snapshot) {
+                  if(!snapshot.hasData)
+                    return const Center(child: CircularProgressIndicator(),);
 
-                ],
+                  return ListView(
+                    children: [
+                      MessageTile()
+                    ],
+                  );
+
+                }
               )
           ),
           BottomMessageChat()
