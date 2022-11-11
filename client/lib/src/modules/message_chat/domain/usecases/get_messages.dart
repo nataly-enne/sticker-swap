@@ -10,9 +10,9 @@ class GetMessagesImpl implements IGetMessages{
   @override
   Future<List<Message>> call({required int idChat}) async{
     if(idChat == 0)
-      return [Message(id: 0, message: "Vc tem figurinhas pra trocar?")];
+      return [Message(id: 0, message: "Vc tem figurinhas pra trocar?", type: 0)];
     else
-      return [Message(id: 2, message: "Tite não me levou para copa.")];
+      return [Message(id: 2, message: "Tite não me levou para copa.", type: 0)];
   }
 
 }

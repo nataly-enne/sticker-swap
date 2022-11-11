@@ -4,6 +4,8 @@ import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/message.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/message_chat_bloc.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/bottom_message_chat.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_localization.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_swap.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_tile.dart';
 
 class MessageChatScreen extends StatefulWidget {
@@ -46,10 +48,17 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                   if(!snapshot.hasData)
                     return const Center(child: CircularProgressIndicator(),);
 
-                  return ListView(
-                    children: [
-                      MessageTile()
-                    ],
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index) {
+                      if(snapshot.data![index].type == 0)
+                        return MessageTile(message: snapshot.data![index]);
+
+                      if(snapshot.data![index].type == 1)
+                        return MessageSwap();
+                      else
+                        return MessageLocalization(message: snapshot.data![index]);
+                    },
                   );
 
                 }
