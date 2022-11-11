@@ -21,7 +21,9 @@ class ChatBloc{
     _chatsStream.sink.add(chats);
   }
 
-  void openChat(Chat chat){}
+  void openChat(Chat chat){
+    Modular.to.pushNamed("/message_chat", arguments: chat);
+  }
 
   void onSearch(){}
 
