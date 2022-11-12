@@ -54,7 +54,10 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) {
                       if(snapshot.data![index] is MessageSimple)
-                        return MessageTile(message: snapshot.data![index]);
+                        return MessageTile(
+                          message: snapshot.data![index],
+                          isMy: controller.isMyMessage(snapshot.data![index]),
+                        );
 
                       if(snapshot.data![index] is MessageSwapStickers)
                         return MessageSwap();
