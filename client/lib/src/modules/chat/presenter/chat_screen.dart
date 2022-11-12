@@ -66,7 +66,7 @@ class _ChatScreenState extends ModularState<ChatScreen, ChatBloc> {
 
         floatingActionButton: FloatingActionButton(
           onPressed: (){},
-          tooltip: "Adicionar char",
+          tooltip: "Adicionar chat",
           backgroundColor: Theme.of(context).primaryColor,
           child: Icon(Icons.add),
         ),
