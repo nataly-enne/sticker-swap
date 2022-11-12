@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_place.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_swap_stickers.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/message_chat_bloc.dart';
@@ -62,7 +63,10 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                       if(snapshot.data![index] is MessageSwapStickers)
                         return MessageSwap();
                       else
-                        return MessageLocalization(message: snapshot.data![index]);
+                        return MessageLocalization(
+                            message: snapshot.data![index] as MessagePlace,
+                            isMy: controller.isMyMessage(snapshot.data![index]),
+                        );
                     },
                   );
 
