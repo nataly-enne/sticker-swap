@@ -4,8 +4,10 @@ class MessageSwapStickers extends Message{
 
   MessageSwapStickers({
     required super.id,
+    required super.idSender,
 
-    super.type = 1,
+
+  super.type = 1,
     super.message = "Sujestão de troca",
   });
 
