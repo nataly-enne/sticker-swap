@@ -17,7 +17,7 @@ class MessageTile extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(color: Colors.grey, width: 1),
-            borderRadius: BorderRadius.all(Radius.circular(10))
+            borderRadius: BorderRadius.all(Radius.circular(15))
           ),
 
           child: Text(message.message,),
@@ -31,7 +31,7 @@ class MessageTile extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10))
+              borderRadius: const BorderRadius.all(Radius.circular(15))
           ),
 
           child: Text(
