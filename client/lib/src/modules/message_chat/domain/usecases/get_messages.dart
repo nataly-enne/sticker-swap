@@ -15,7 +15,7 @@ class GetMessagesImpl implements IGetMessages{
     if(idChat == 0)
       return [
         MessageSwapStickers(id: 3, idSender: 1),
-        MessagePlace(id: 5, idSender: 1),
+        MessagePlace(id: 5, idSender: 1, time: "14:30", place: "Leitura, Natal shopping"),
         MessageSimple(id: 0, message: "Vc tem figurinhas pra trocar?", idSender: 0)
       ];
     else

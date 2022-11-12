@@ -49,8 +49,8 @@ class MessageLocalization extends StatelessWidget {
       children: [
         Text("Sugestão de local", style:  textStyle,),
         Divider(height: 8, color: textStyle?.color,),
-        Text("Local:", style: textStyle,),
-        Text("Horário:", style: textStyle,),
+        Text("Local: ${message.place}", style: textStyle,),
+        Text("Horário: ${message.time}", style: textStyle,),
       ],
     );
   }

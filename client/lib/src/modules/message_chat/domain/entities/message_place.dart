@@ -2,7 +2,13 @@ import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/mes
 
 class MessagePlace extends Message{
 
+  String time;
+  String place;
+
   MessagePlace({
+    required this.time,
+    required this.place,
+
     required super.id,
     required super.idSender,
 
