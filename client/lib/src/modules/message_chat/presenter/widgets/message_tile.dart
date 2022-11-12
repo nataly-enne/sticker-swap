@@ -14,8 +14,12 @@ class MessageTile extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.fromLTRB(14.0, 4.0, 2.0, 4.0),
           padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey, width: 1),
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
 
-          color: Colors.green,
           child: Text(message.message,),
         ),
       );
@@ -25,9 +29,15 @@ class MessageTile extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.fromLTRB(2.0, 2.0, 14.0, 2.0),
           padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: const BorderRadius.all(Radius.circular(15))
+          ),
 
-          color: Colors.red,
-          child: Text(message.message,),
+          child: Text(
+            message.message,
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       );
     }
