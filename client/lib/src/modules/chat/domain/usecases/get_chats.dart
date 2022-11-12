@@ -1,5 +1,5 @@
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
-import 'package:sticker_swap_client/src/modules/chat/domain/entities/message.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
 
 
 abstract class IGetChats{

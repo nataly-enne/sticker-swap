@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
-import 'package:sticker_swap_client/src/modules/chat/domain/entities/message.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_swap_stickers.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/message_chat_bloc.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/bottom_message_chat.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_localization.dart';
@@ -51,10 +53,10 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) {
-                      if(snapshot.data![index].type == 0)
+                      if(snapshot.data![index] is MessageSimple)
                         return MessageTile(message: snapshot.data![index]);
 
-                      if(snapshot.data![index].type == 1)
+                      if(snapshot.data![index] is MessageSwapStickers)
                         return MessageSwap();
                       else
                         return MessageLocalization(message: snapshot.data![index]);
