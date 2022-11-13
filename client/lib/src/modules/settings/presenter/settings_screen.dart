@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -7,9 +8,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-    TextEditingController _email = TextEditingController();
-    TextEditingController _password = TextEditingController();
-    
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -19,88 +20,85 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded (
+    return Expanded(
         child: Scaffold(
-          appBar: AppBar(
-            title: Text('Configurações'),
-          ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment : MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Positioned(
-            child: buildProfileImage(),
-          ),
-          Container(
-            padding: const EdgeInsets.all(10),
-            child: TextButton(
-              child: const Text(
-                'Mudar foto de perfil',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-
-                ),
-              ),
-            onPressed: () {},
+            appBar: AppBar(
+              title: Text('Configurações'),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                child: TextField(
-                  controller: _email,
-                  decoration: InputDecoration(
-                      suffixIcon: const Icon(Icons.edit),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(90.0),
-                      ),
-                      labelText: 'Email',
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Positioned(
+                    child: buildProfileImage(),
                   ),
-                ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                child: TextField(
-                  controller: _password,
-                  decoration: InputDecoration(
-                  suffixIcon: const Icon(Icons.remove_red_eye),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(90.0),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    child: TextButton(
+                      child: const Text(
+                        'Mudar foto de perfil',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                      labelText: 'Password',
+                      onPressed: () {},
+                    ),
                   ),
-                ),
-          ),
-          Container(
-              height: 80,
-              margin: const EdgeInsets.only(top: 250),
-              padding: const EdgeInsets.all(20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                ),
-                child: const Text('Sair'),
-                onPressed: () async{
-                  _showLogOutModalDialog(context);
-                },
-              )),
-          ],
-          ), 
-        )
-    )
-    );
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: TextField(
+                      controller: _email,
+                      decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.edit),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(90.0),
+                        ),
+                        labelText: 'Email',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: TextField(
+                      controller: _password,
+                      decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.remove_red_eye),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(90.0),
+                        ),
+                        labelText: 'Password',
+                      ),
+                    ),
+                  ),
+                  Container(
+                      height: 80,
+                      margin: const EdgeInsets.only(top: 250),
+                      padding: const EdgeInsets.all(20),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50),
+                        ),
+                        child: const Text('Sair'),
+                        onPressed: () async {
+                          _showLogOutModalDialog(context);
+                        },
+                      )),
+                ],
+              ),
+            )));
   }
 }
 
-_showLogOutModalDialog(context){
-    showDialog(
+_showLogOutModalDialog(context) {
+  showDialog(
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0)),
-            child: Container(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             constraints: const BoxConstraints(maxHeight: 150),
             child: Padding(
@@ -111,36 +109,33 @@ _showLogOutModalDialog(context){
                   RichText(
                     textAlign: TextAlign.justify,
                     text: const TextSpan(
-                      text:"Você tem certeza que deseja sair do Sticker Swap?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        color: Colors.black,
-                        wordSpacing: 1
-                      )
-                    ),
+                        text:
+                            "Você tem certeza que deseja sair do Sticker Swap?",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            color: Colors.black,
+                            wordSpacing: 1)),
                   ),
                   Container(
-                    height: 80,
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                      ),
-                      child: const Text('Sim'),
-                      onPressed: () async {
-                      Navigator.pushNamed(context, '/login');
-
-                      },
-                  )),
+                      height: 80,
+                      padding: const EdgeInsets.all(20),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50),
+                        ),
+                        child: const Text('Sim'),
+                        onPressed: () async {
+                          Navigator.pushNamed(context, '/login');
+                        },
+                      )),
                 ],
               ),
             ),
           ),
-          
         );
-    });
-  }
+      });
+}
 
 Widget buildProfileImage() => const CircleAvatar(
       radius: 55,
