@@ -12,59 +12,54 @@ class MessageLocalization extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(isMy) {
-      return Align(
-        alignment: Alignment.topRight,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(14.0, 4.0, 2.0, 4.0),
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey, width: 1),
-                    borderRadius: BorderRadius.all(Radius.circular(15))
-                ),
-
-                child: _textPlace(),
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(14.0, 4.0, 2.0, 4.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey, width: 1),
+                  borderRadius: BorderRadius.all(Radius.circular(15))
               ),
 
+              child: _textPlace(),
+            ),
 
-            ],
-          ),
+            _buttomStatus()
+          ],
         ),
       );
     }else{
-      return Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(2.0, 2.0, 14.0, 2.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(15))
-                ),
-
-                child: _textPlace(textStyle: TextStyle(color: Colors.white)),
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(2.0, 2.0, 14.0, 2.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(15))
               ),
 
-              if(message.status == StatusMessageConfirm.wait)
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    _buttonReject(),
-                    _buttonAccepted(),
-                  ],
-                )
-              else
-                _buttomStatus()
-            ],
-          ),
+              child: _textPlace(textStyle: TextStyle(color: Colors.white)),
+            ),
+
+            if(message.status == StatusMessageConfirm.wait)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  _buttonReject(),
+                  _buttonAccepted(),
+                ],
+              )
+            else
+              _buttomStatus()
+          ],
         ),
       );
     }
