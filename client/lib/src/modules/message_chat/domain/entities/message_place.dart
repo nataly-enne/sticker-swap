@@ -5,9 +5,12 @@ class MessagePlace extends Message{
   String time;
   String place;
 
+  int status;
+
   MessagePlace({
     required this.time,
     required this.place,
+    required this.status,
 
     required super.id,
     required super.idSender,

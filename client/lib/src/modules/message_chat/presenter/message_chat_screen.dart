@@ -62,11 +62,14 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
 
                       if(snapshot.data![index] is MessageSwapStickers)
                         return MessageSwap();
-                      else
+
+                      if(snapshot.data![index] is MessagePlace)
                         return MessageLocalization(
                             message: snapshot.data![index] as MessagePlace,
                             isMy: controller.isMyMessage(snapshot.data![index]),
                         );
+
+                      return SizedBox(height: 2,);
                     },
                   );
 

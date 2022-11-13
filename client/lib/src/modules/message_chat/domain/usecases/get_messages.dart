@@ -2,6 +2,7 @@ import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/mes
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_place.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_swap_stickers.dart';
+import 'package:sticker_swap_client/src/utils/consts/status_message_confirm.dart';
 
 
 abstract class IGetMessages{
@@ -15,7 +16,7 @@ class GetMessagesImpl implements IGetMessages{
     if(idChat == 0)
       return [
         MessageSwapStickers(id: 3, idSender: 1),
-        MessagePlace(id: 5, idSender: 1, time: "14:30", place: "Leitura, Natal shopping"),
+        MessagePlace(id: 5, idSender: 1, time: "14:30", place: "Leitura, Natal shopping", status: StatusMessageConfirm.wait),
         MessageSimple(id: 0, message: "Vc tem figurinhas pra trocar?", idSender: 0)
       ];
     else
