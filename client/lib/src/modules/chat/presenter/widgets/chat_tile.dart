@@ -14,11 +14,43 @@ class ChatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Image.network(chat.image),
-      title: Text(chat.name),
-      subtitle: Text(chat.lastMessage.message),
+    return InkWell(
       onTap: ()=> onTap(chat),
+
+      child: Ink(
+        padding: EdgeInsets.only(left: 16,right: 16,top: 10,bottom: 10),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(chat.image),
+                    maxRadius: 30,
+                  ),
+                  const SizedBox(width: 16,),
+                  Expanded(
+                    child: Ink(
+                      color: Colors.transparent,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(chat.name, style: TextStyle(fontSize: 16),),
+                          const SizedBox(height: 6,),
+                          Text(
+                            chat.lastMessage.message,
+                            style: TextStyle(fontSize: 13,color: Colors.grey.shade600, fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
