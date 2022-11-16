@@ -5,8 +5,8 @@ class GroupStickerUtils{
 
   static List<StickerGroup> list = [
     StickerGroup(id: -1, name: "Ver\ntodas", image: 'assets/images/icone_todas.png', isImageIcon: true),
-    StickerGroup(id: 1, name: "[FWC]\nEstádios", image: 'assets/images/icones_estadio.png', isImageIcon: true),
     StickerGroup(id: 0, name: "[FWC]\nEspeciais", image: 'assets/images/icone_especiais.png', isImageIcon: true),
+    StickerGroup(id: 1, name: "[FWC]\nEstádios", image: 'assets/images/icones_estadio.png', isImageIcon: true),
     StickerGroup(id: 2, name: "[FWC]\nBola", image: 'assets/images/icone_bola.png', isImageIcon: true),
 
     StickerGroup(id: 03, name: "[QAT]\nCatar", image: "assets/images/bandeiras/catar.png"),

@@ -46,6 +46,7 @@ class StickerBloc{
     if(newIdModePage != idModePageNow){
       firstGroup= LimitsGroupUtils.firstGroup;
       lastGroup= LimitsGroupUtils.lastGroup;
+      albumManager.albumView = albumManager.album;
 
       idModePageNow = newIdModePage;
       _idModePageStream.sink.add(idModePageNow);
@@ -53,7 +54,27 @@ class StickerBloc{
   }
 
   void searchSticker(){
-    print("Texto Buscado: ${searchController.text}");
+    List<Sticker> sticksGroup = [];
+    albumManager.albumView = albumManager.album;
+    Album album = Album();
+    album.colectionStickers = {};
+
+    for(int i =0; i < 38; i++){
+      sticksGroup.clear();
+
+      if(albumManager.albumView!.colectionStickers.containsKey(i)){
+        for(Sticker sticker in (albumManager.albumView!.colectionStickers[i] as List<Sticker>)) {
+          if(sticker.text.contains(searchController.text.toUpperCase()))
+            sticksGroup.add(sticker);
+        }
+      }
+
+      if(sticksGroup.isNotEmpty)
+        album.colectionStickers[i] = List.from(sticksGroup);
+    }
+
+    albumManager.albumView = album;
+    _idModePageStream.sink.add(1);
   }
 
   void selectGroup(StickerGroup group){

@@ -129,7 +129,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                    ElementSticker(
                      sticker: sticker,
                      addSticker: controller.addSticker,
-                     detailsSticker: controller.detailsSticker,
+                     detailsSticker: controller.removeSticker, //Mudar depois para o correto
                    ),
                ],
              ),

@@ -10,6 +10,7 @@ class ChatBloc{
   final User _user = Modular.get<User>();
   final IGetChats _getChatsUseCase = Modular.get<IGetChats>();
 
+  late List<Chat> chats;
   TextEditingController searchController = TextEditingController();
 
   final BehaviorSubject<List<Chat>> _chatsStream = BehaviorSubject();
@@ -17,7 +18,7 @@ class ChatBloc{
 
 
   void getChats() async{
-    List<Chat> chats = await _getChatsUseCase.call(idUser: _user.id!);
+    chats = await _getChatsUseCase.call(idUser: _user.id!);
     _chatsStream.sink.add(chats);
   }
 
@@ -25,7 +26,16 @@ class ChatBloc{
     Modular.to.pushNamed("/message_chat", arguments: chat);
   }
 
-  void onSearch(){}
+  void onSearch(){
+    List<Chat> chatsSearch =  [];
+    for(Chat chat in chats){
+      if(chat.name.toLowerCase().contains(searchController.text.toLowerCase())){
+        chatsSearch.add(chat);
+      }
+    }
+
+    _chatsStream.sink.add(chatsSearch);
+  }
 
 
   void dispose(){

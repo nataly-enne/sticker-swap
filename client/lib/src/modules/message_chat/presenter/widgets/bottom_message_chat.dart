@@ -2,35 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class BottomMessageChat extends StatelessWidget {
-  const BottomMessageChat({Key? key}) : super(key: key);
+
+  final TextEditingController controller;
+  final Function() sendText;
+
+  const BottomMessageChat({
+    required this.controller,
+    required this.sendText,
+    Key? key
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Divider(height: 0.1),
+        const Divider(height: 0.1),
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 10, 8, 5),
           child: Row(
             children:  <Widget>[
               Expanded(
               child: TextField(
+                controller: controller,
                 decoration: InputDecoration(
                   hintText: "Escreva uma mensagem...",
+                  contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(90.0),),  
                 ),
-                style: TextStyle(height: 0.5),
               )
               ),
-              SizedBox(
-                width: 6,
-              ),
+              const SizedBox(width: 6,),
               CircleAvatar(
                 radius: 25,
-                backgroundColor: Color(0xff9A1032),
+                backgroundColor: const Color(0xff9A1032),
                 child: IconButton(
-                      onPressed: () {},
+                      onPressed: sendText,
                       icon: const ImageIcon(
                         AssetImage('assets/images/send_image.png'),
                         color: Colors.white, 
@@ -41,7 +48,7 @@ class BottomMessageChat extends StatelessWidget {
             ],
           ),
         ),
-        Divider(height: 2),
+        const Divider(height: 2),
         SizedBox(
           height: 60,
           child: ListView(
@@ -49,91 +56,47 @@ class BottomMessageChat extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal:8),
             children: [
               TextButton(
-                  onPressed: (){}, child: Text(
-                    "Trocar figurinhas",
-                     style: TextStyle(fontSize: 14, color: Colors.black)),
+                onPressed: (){},
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     side: BorderSide(color: Color(0xff9A1032)),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
                   ),
+                child: const Text(
+                    "Trocar figurinhas",
+                     style: TextStyle(fontSize: 14, color: Colors.black)),
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: TextButton(
-                    
-                    onPressed: (){}, child: Text(
-                      "Trocar figurinhas",
-                       style: TextStyle(fontSize: 14, color: Colors.black)),
+                  onPressed: (){},
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                       side: BorderSide(color: Color(0xff9A1032)),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
                     ),
+                  child: const Text(
+                      "Marcar local de troca",
+                       style: TextStyle(fontSize: 14, color: Colors.black)),
                 ),
               ),
 
               TextButton(
-                  onPressed: (){}, child: Text(
-                    "Trocar figurinhas",
-                     style: TextStyle(fontSize: 14, color: Colors.black)),
+                onPressed: (){},
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     side: BorderSide(color: Color(0xff9A1032)),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
                   ),
+                child: const Text(
+                    "Ver trocas feitas",
+                    style: TextStyle(fontSize: 14, color: Colors.black)
+                ),
               )
             ],
           ),
         )
-
-
-
-        /*Container(
-          margin: EdgeInsets.all(0),
-          padding: EdgeInsets.zero,
-          child: ButtonBar(
-            alignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton(
-                onPressed: (){}, child: Text(
-                  "Trocar figurinhas",
-                   style: TextStyle(fontSize: 18, color: Colors.black)),
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.all(10),
-                  side: BorderSide(color: Color(0xff9A1032)),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
-                ),
-              ),
-
-              TextButton(
-                onPressed: (){}, child: Text("Combinar local"),
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.all(10),
-                  textStyle: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    decorationColor: Colors.black
-                    ),
-                  side: BorderSide(color: Color(0xff9A1032)),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
-                ),
-              ),
-
-              TextButton(
-                onPressed: (){}, child: Text("teste"),
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.all(0),
-                  textStyle: TextStyle(fontSize: 18),
-                  side: BorderSide(color: Color(0xff9A1032)),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
-                ),
-                
-              ),
-            ],
-          ),
-        )*/
       ],
     );
   }
