@@ -23,6 +23,13 @@ class GetAlbumImpl extends IGetAlbum{
         Sticker(id: 5, text: "FWC 6", idGroup: 0, quantity: 0),
         Sticker(id: 5, text: "FWC 7", idGroup: 0, quantity: 2),
       ],
+      1 : [
+        for(int i=8; i<=17; i++)
+          Sticker(id: i, text: "FWC $i", idGroup: 1, quantity: i%2),
+      ],
+      2 : [
+        Sticker(id: 18, text: "FWC 18", idGroup: 2, quantity: 0),
+      ],
       3 : [
         for(int i=1; i<=20; i++)
           Sticker(id: i, text: "QAT $i", idGroup: 3, quantity: i%3),
