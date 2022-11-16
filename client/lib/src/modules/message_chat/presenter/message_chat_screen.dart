@@ -76,7 +76,10 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                 }
               )
           ),
-          BottomMessageChat()
+          BottomMessageChat(
+            controller: controller.textController,
+            sendText: controller.sendMessage,
+          )
         ],
       ),
     );

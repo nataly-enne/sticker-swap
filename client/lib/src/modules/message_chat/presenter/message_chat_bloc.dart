@@ -4,12 +4,14 @@ import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/usecases/get_messages.dart';
 
 class MessageChatBloc{
   final User _user = Modular.get<User>();
   final IGetMessages _getMessagesUseCase = Modular.get<IGetMessages>();
 
+  late List<Message> messages;
   TextEditingController textController = TextEditingController();
 
   final BehaviorSubject<List<Message>> _messagesStream = BehaviorSubject();
@@ -17,12 +19,22 @@ class MessageChatBloc{
 
 
   void getMessages(Chat chat) async{
-    List<Message> Messages = await _getMessagesUseCase.call(idChat: chat.id);
-    _messagesStream.sink.add(Messages);
+    messages = await _getMessagesUseCase.call(idChat: chat.id);
+    _messagesStream.sink.add(messages);
   }
 
   bool isMyMessage(Message message)=> message.idSender == _user.id;
 
+
+  void sendMessage(){
+    if(textController.text.isNotEmpty){
+      messages.add(
+        MessageSimple(id: 1, message: textController.text, idSender: _user.id!)
+      );
+      textController.clear();
+      _messagesStream.sink.add(messages);
+    }
+  }
 
   void dispose(){
     textController.dispose();
