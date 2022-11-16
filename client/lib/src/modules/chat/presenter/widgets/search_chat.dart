@@ -12,13 +12,21 @@ class SearchChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(top: 20, left: 30, bottom: 20, right: 30),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(40),
+            borderSide: const BorderSide(
+              color: Colors.black,
+              width: 2,
+            ),
+          ),
+          border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
             suffixIcon: IconButton(
                 onPressed: onSearch,
-                icon: Icon(Icons.search)
+                icon: const Icon(Icons.search)
             )
         ),
       ),

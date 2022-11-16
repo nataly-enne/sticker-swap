@@ -36,7 +36,7 @@ class StickerAlbumProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 15, 10, 8),
+      padding: const EdgeInsets.fromLTRB(30, 15, 30, 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
