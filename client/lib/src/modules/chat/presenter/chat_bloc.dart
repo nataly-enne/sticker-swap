@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
@@ -24,6 +25,25 @@ class ChatBloc{
 
   void openChat(Chat chat){
     Modular.to.pushNamed("/message_chat", arguments: chat);
+  }
+
+  void openQrCode(){}
+
+  void openScanQrCode() async{
+    try{
+      String result = await FlutterBarcodeScanner.scanBarcode(
+        "#eb3434",
+        "Cancelar",
+        true,
+        ScanMode.QR
+      );
+
+      //Verificar se informacao foi recebida
+      if(result != "-1")
+        print(result);
+    }catch(e){
+      print(e);
+    }
   }
 
   void onSearch(){
