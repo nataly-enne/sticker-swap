@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
 import 'package:sticker_swap_client/src/modules/chat/presenter/chat_bloc.dart';
 import 'package:sticker_swap_client/src/modules/chat/presenter/widgets/chat_tile.dart';
@@ -64,11 +65,28 @@ class _ChatScreenState extends ModularState<ChatScreen, ChatBloc> {
           ],
         ),
 
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){},
+        floatingActionButton: SpeedDial(
+          icon: Icons.add,
+          activeIcon: Icons.close,
           tooltip: "Adicionar chat",
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(Icons.add),
+          overlayColor: Colors.black,
+          overlayOpacity: 0.3,
+          children: [
+            SpeedDialChild(
+              label: 'Escanear',
+              child: Icon(Icons.qr_code_scanner),
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: (){},
+            ),
+            SpeedDialChild(
+                label: 'QrCode',
+                child: Icon(Icons.qr_code),
+                labelStyle: TextStyle(fontSize: 18.0),
+                onTap: (){}
+            ),
+          ],
         ),
       ),
     );
