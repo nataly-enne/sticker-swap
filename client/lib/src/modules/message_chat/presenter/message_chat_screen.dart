@@ -67,6 +67,7 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                         return MessageLocalization(
                             message: snapshot.data![index] as MessagePlace,
                             isMy: controller.isMyMessage(snapshot.data![index]),
+                            avaliableLocalization: controller.avaliableLocalization,
                         );
 
                       return SizedBox(height: 2,);
