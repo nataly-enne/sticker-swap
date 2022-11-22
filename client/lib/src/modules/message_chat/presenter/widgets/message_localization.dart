@@ -6,8 +6,14 @@ import 'package:sticker_swap_client/src/utils/consts/status_message_confirm.dart
 class MessageLocalization extends StatelessWidget {
   final bool isMy;
   final MessagePlace message;
-  const MessageLocalization({Key? key, required this.message, required this.isMy})
-      : super(key: key);
+  final Function({required MessagePlace messagePlace, required int newStatus}) avaliableLocalization;
+
+  const MessageLocalization({
+    Key? key,
+    required this.isMy,
+    required this.message,
+    required this.avaliableLocalization
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +96,12 @@ class MessageLocalization extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: InkWell(
-        onTap: (){},
+        onTap: (){
+          avaliableLocalization(
+            messagePlace: message,
+            newStatus: StatusMessageConfirm.accepted
+          );
+        },
         borderRadius: BorderRadius.all(Radius.circular(100)),
         child: Ink(
           padding: const EdgeInsets.all(6.0),
@@ -109,7 +120,12 @@ class MessageLocalization extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: InkWell(
-        onTap: (){},
+        onTap: (){
+          avaliableLocalization(
+              messagePlace: message,
+              newStatus: StatusMessageConfirm.rejected
+          );
+        },
         borderRadius: BorderRadius.all(Radius.circular(100)),
         child: Ink(
           padding: const EdgeInsets.all(6.0),
