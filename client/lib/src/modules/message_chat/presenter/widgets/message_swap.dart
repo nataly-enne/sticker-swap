@@ -74,7 +74,8 @@ class MessageSwap extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
+        Text("Sugestão de troca", style:  textStyle,),
+        Divider(height: 8, color: textStyle?.color,),
       ],
     );
   }
