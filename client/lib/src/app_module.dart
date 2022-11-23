@@ -9,6 +9,10 @@ import 'package:sticker_swap_client/src/modules/splashscreen/presenter/splash_sc
 import 'package:sticker_swap_client/src/modules/splashscreen/presenter/splash_screen_bloc.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
 
+import 'modules/recover/presenter/recover_module.dart';
+import 'modules/register/presenter/register_bloc.dart';
+import 'modules/register/presenter/register_module.dart';
+
 class AppModule extends Module{
   @override
   List<Bind> get binds => [
@@ -22,7 +26,9 @@ class AppModule extends Module{
     )),
 
     Bind<SplashScreenBloc>((i) => SplashScreenBloc()),
-    Bind<LoginBloc>((i) => LoginBloc())
+    Bind<LoginBloc>((i) => LoginBloc()),
+    Bind<RegisterBloc>((i) => RegisterBloc()),
+
   ];
 
   @override
@@ -42,7 +48,17 @@ class AppModule extends Module{
         '/message_chat',
         module: MessageChatModule(),
         transition: TransitionType.fadeIn
-    )
+    ),
+    ModuleRoute(
+        '/register',
+        module: RegisterModule(),
+        transition: TransitionType.fadeIn
+    ),
+    ModuleRoute(
+        '/recover',
+        module: RecoverModule(),
+        transition: TransitionType.fadeIn
+    ),
   ];
 
 }
