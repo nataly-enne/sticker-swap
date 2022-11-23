@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_swap_stickers.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 import 'package:sticker_swap_client/src/utils/consts/status_message_confirm.dart';
 
 class MessageSwap extends StatelessWidget {
@@ -76,6 +77,9 @@ class MessageSwap extends StatelessWidget {
       children: [
         Text("Sugestão de troca", style:  textStyle,),
         Divider(height: 8, color: textStyle?.color,),
+
+        for(Sticker sticker in message.stickersNeed)
+          Text(sticker.text, style: textStyle)
       ],
     );
   }
