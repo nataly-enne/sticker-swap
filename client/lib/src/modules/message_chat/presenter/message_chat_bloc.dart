@@ -6,6 +6,7 @@ import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_place.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_swap_stickers.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/usecases/get_messages.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_localization.dart';
 import 'package:sticker_swap_client/src/utils/consts/status_message_confirm.dart';
@@ -35,6 +36,16 @@ class MessageChatBloc{
   }){
     if(messagePlace.status == StatusMessageConfirm.wait){
       messagePlace.status = newStatus;
+      _messagesStream.sink.add(messages);
+    }
+  }
+
+  void avaliableSwap({
+    required MessageSwapStickers message,
+    required int newStatus
+  }){
+    if(message.status == StatusMessageConfirm.wait){
+      message.status = newStatus;
       _messagesStream.sink.add(messages);
     }
   }
