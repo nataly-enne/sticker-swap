@@ -66,6 +66,7 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                       setState(() {
                         RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                       });
+                      controller.verifyAuth();
                       debugPrint(_email.text);
                       debugPrint(_password.text);
                       var jwt = await login(_email.text, _password.text);
