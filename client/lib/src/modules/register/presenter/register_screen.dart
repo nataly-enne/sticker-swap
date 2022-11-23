@@ -11,6 +11,7 @@ class RegisterScreen extends StatefulWidget {
 class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
+  TextEditingController _password_confirm = TextEditingController();
   bool _validate = true;
 
   @override
@@ -25,7 +26,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.fromLTRB(25, 20, 25, 40),
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 40),
                 child: Image.asset('assets/images/logo.png'),
               ),
               Container(
@@ -36,7 +37,9 @@ class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(90.0),
                       ),
-                      labelText: 'Email',
+                      labelText: 'Email', 
+                      prefixIcon: Icon(Icons.email),
+                      hintText: 'email@example.com',
                       errorText: !_validate ? "Formato inválido" : null
                   ),
                 ),
@@ -50,7 +53,22 @@ class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(90.0),
                       ),
-                      labelText: 'Password'
+                      labelText: 'Password',
+                      prefixIcon: Icon(Icons.key),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: TextField(
+                  controller: _password_confirm,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(90.0),
+                      ),
+                      labelText: 'Password',
+                      prefixIcon: Icon(Icons.key),
                   ),
                 ),
               ),
@@ -61,7 +79,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
                     ),
-                    child: const Text('Log In'),
+                    child: const Text('Cadastre-se'),
                     onPressed: () async{
                       setState(() {
                         RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
@@ -77,13 +95,6 @@ class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
                       controller.verifyAuth();
                     },
                   )),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Registre-se',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
-              ),
             ],
           ),
         ));

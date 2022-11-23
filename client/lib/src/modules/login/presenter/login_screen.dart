@@ -25,7 +25,7 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.fromLTRB(25, 20, 25, 40),
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 40),
                 child: Image.asset('assets/images/logo.png'),
               ),
               Container(
@@ -37,6 +37,8 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                         borderRadius: BorderRadius.circular(90.0),
                       ),
                       labelText: 'Email',
+                      prefixIcon: Icon(Icons.email),
+                      hintText: 'email@example.com',
                       errorText: !_validate ? "Formato inválido" : null
                   ),
                 ),
@@ -50,7 +52,8 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(90.0),
                       ),
-                      labelText: 'Password'
+                      labelText: 'Password',
+                      prefixIcon: Icon(Icons.key),
                   ),
                 ),
               ),
@@ -59,7 +62,7 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {controller.toRecoverScreen();},
                     child: Text(
                       'Esqueceu a senha?',
                       style: TextStyle(color: Color.fromARGB(255, 31, 114, 240)),
