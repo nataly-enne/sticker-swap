@@ -3,12 +3,12 @@ import 'package:sticker_swap_client/src/modules/login/config/api.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class LoginDemo extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  LoginDemoState createState() => LoginDemoState();
+  RegisterScreenState createState() => RegisterScreenState();
 }
 
-class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
+class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _validate = true;
@@ -17,7 +17,7 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Log in'),
+          title: Text('Registrar-se'),
         ),
         body: Center(
           child: Column(
@@ -55,19 +55,6 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                 ),
               ),
               Container(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Esqueceu a senha?',
-                      style: TextStyle(color: Color.fromARGB(255, 31, 114, 240)),
-                    ),
-                  ),
-              ),
-              ),
-              Container(
                   height: 80,
                   padding: const EdgeInsets.all(20),
                   child: ElevatedButton(
@@ -91,7 +78,7 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                     },
                   )),
               TextButton(
-                onPressed: () {controller.toRegisterScreen();},
+                onPressed: () {},
                 child: Text(
                   'Registre-se',
                   style: TextStyle(color: Colors.grey[600]),
