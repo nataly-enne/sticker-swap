@@ -67,7 +67,7 @@ class MessageChatBloc{
             topLeft:  Radius.circular(12.0),
             topRight:  Radius.circular(12.0)
         )),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffcfd0da),
         context: Modular.routerDelegate.navigatorKey.currentContext!,
         builder: (_) => MarkLocationModule()
     );
