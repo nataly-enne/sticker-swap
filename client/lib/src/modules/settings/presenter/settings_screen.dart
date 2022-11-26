@@ -74,18 +74,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   Container(
-                      height: 80,
-                      margin: const EdgeInsets.only(top: 250),
-                      padding: const EdgeInsets.all(20),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50),
-                        ),
-                        child: const Text('Sair'),
-                        onPressed: () async {
-                          _showLogOutModalDialog(context);
-                        },
-                      )),
+                    height: 80,
+                    margin: const EdgeInsets.only(top: 250),
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      child: const Text('Sair'),
+                      onPressed: () async {
+                        _showLogOutModalDialog(context);
+                      },
+                    )
+                  ),
                 ],
               ),
             )));
