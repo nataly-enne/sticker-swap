@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
+import 'package:sticker_swap_client/src/modules/mark_location/presenter/mark_location_module.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_place.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
@@ -58,6 +59,23 @@ class MessageChatBloc{
       textController.clear();
       _messagesStream.sink.add(messages);
     }
+  }
+
+  void markLocation() async{
+    await showModalBottomSheet<dynamic>(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
+            topLeft:  Radius.circular(12.0),
+            topRight:  Radius.circular(12.0)
+        )),
+        backgroundColor: Color(0xffCACBD6E5),
+        context: Modular.routerDelegate.navigatorKey.currentContext!,
+        builder: (_) => MarkLocationModule(markLocation: updateMarkLocation,)
+    );
+  }
+
+  void updateMarkLocation(MessagePlace message){
+    messages.add(message);
+    _messagesStream.add(messages);
   }
 
   void dispose(){
