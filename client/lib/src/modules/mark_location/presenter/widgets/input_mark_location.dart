@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 class InputMarkLocation extends StatelessWidget {
 
   final String hintText;
+  final TextInputType inputType;
+  final TextEditingController controller;
   InputMarkLocation({
-    required this.hintText
+    required this.hintText,
+    required this.inputType,
+    required this.controller
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
+      keyboardType: inputType,
       decoration: InputDecoration(
         filled: true,
         fillColor: Color(0xfff8f8f8),

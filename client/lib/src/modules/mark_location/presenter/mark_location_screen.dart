@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sticker_swap_client/src/core/components/app_bar_bottom_sheet.dart';
+import 'package:sticker_swap_client/src/modules/mark_location/presenter/mark_location_bloc.dart';
 import 'package:sticker_swap_client/src/modules/mark_location/presenter/widgets/input_mark_location.dart';
 
-class MarkLocationScreen extends StatelessWidget {
+class MarkLocationScreen extends StatefulWidget {
+  @override
+  _MarkLocationScreenState createState() => _MarkLocationScreenState();
+}
+
+class _MarkLocationScreenState extends ModularState<MarkLocationScreen, MarkLocationBloc> {
+
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -12,7 +27,11 @@ class MarkLocationScreen extends StatelessWidget {
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: InputMarkLocation(hintText: "Escreva o local",),
+          child: InputMarkLocation(
+            hintText: "Escreva o local",
+            inputType: TextInputType.text,
+            controller: controller.localController,
+          ),
         ),
 
         Padding(
@@ -21,8 +40,12 @@ class MarkLocationScreen extends StatelessWidget {
             direction: Axis.horizontal,
             children: [
               Flexible(
-                flex: 9,
-                child: InputMarkLocation(hintText: "Escreva a data",)
+                  flex: 9,
+                  child: InputMarkLocation(
+                    hintText: "Escreva a data",
+                    inputType: TextInputType.datetime,
+                    controller: controller.dataController,
+                  )
               ),
               Flexible(
                 flex: 1,
@@ -30,7 +53,11 @@ class MarkLocationScreen extends StatelessWidget {
               ),
               Flexible(
                   flex: 9,
-                  child: InputMarkLocation(hintText: "Escreva o horário",)
+                  child: InputMarkLocation(
+                    hintText: "Escreva o horário",
+                    inputType: TextInputType.datetime,
+                    controller: controller.horarioController,
+                  )
               )
             ],
           ),
@@ -49,4 +76,5 @@ class MarkLocationScreen extends StatelessWidget {
       ],
     );
   }
+
 }
