@@ -19,6 +19,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   http: ^0.13.5
 
+  qr_flutter: ^4.0.0
   flutter_speed_dial: ^6.2.0
   flutter_barcode_scanner: ^2.0.0
 
