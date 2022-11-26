@@ -81,10 +81,12 @@ class _ChatScreenState extends ModularState<ChatScreen, ChatBloc> {
               onTap: controller.openScanQrCode,
             ),
             SpeedDialChild(
-                label: 'QrCode',
+                label: 'QrCode', 
                 child: Icon(Icons.qr_code),
                 labelStyle: TextStyle(fontSize: 18.0),
-                onTap: controller.openQrCode,
+                onTap: () async {
+                 Navigator.pushNamed(context, '/qrcode');
+              },
             ),
           ],
         ),
