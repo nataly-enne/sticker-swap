@@ -12,7 +12,7 @@ class MarkLocationScreen extends StatelessWidget {
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: InputMarkLocation(hintText: "Inisira o local",),
+          child: InputMarkLocation(hintText: "Escreva o local",),
         ),
 
         Padding(
@@ -22,7 +22,7 @@ class MarkLocationScreen extends StatelessWidget {
             children: [
               Flexible(
                 flex: 9,
-                child: InputMarkLocation(hintText: "Inisira data",)
+                child: InputMarkLocation(hintText: "Escreva a data",)
               ),
               Flexible(
                 flex: 1,
@@ -30,11 +30,22 @@ class MarkLocationScreen extends StatelessWidget {
               ),
               Flexible(
                   flex: 9,
-                  child: InputMarkLocation(hintText: "Inisira hora",)
+                  child: InputMarkLocation(hintText: "Escreva o horário",)
               )
             ],
           ),
         ),
+
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+          child: SizedBox(
+            height: 45,
+            child: ElevatedButton(
+                onPressed: (){},
+                child: const Text("Enviar")),
+          ),
+        )
+
       ],
     );
   }
