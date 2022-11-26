@@ -5,10 +5,12 @@ class BottomMessageChat extends StatelessWidget {
 
   final TextEditingController controller;
   final Function() markLocation;
+  final Function() swapSticker;
   final Function() sendText;
 
   const BottomMessageChat({
     required this.markLocation,
+    required this.swapSticker,
     required this.controller,
     required this.sendText,
     Key? key
@@ -58,7 +60,7 @@ class BottomMessageChat extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal:8),
             children: [
               TextButton(
-                onPressed: (){},
+                onPressed: swapSticker,
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     side: BorderSide(color: Color(0xff9A1032)),

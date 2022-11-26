@@ -86,6 +86,7 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
           BottomMessageChat(
             controller: controller.textController,
             markLocation: controller.markLocation,
+            swapSticker: controller.swapSticker,
             sendText: controller.sendMessage,
           )
         ],
