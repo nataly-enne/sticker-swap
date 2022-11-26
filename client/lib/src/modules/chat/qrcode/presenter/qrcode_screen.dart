@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:sticker_swap_client/src/core/entities/user.dart';
 
 class QrCodeScreen extends StatefulWidget {
   const QrCodeScreen({Key? key}) : super(key: key);
@@ -11,46 +14,32 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Scaffold(
-            appBar: AppBar(
-              title: const Text('Trocar Figurinhas'),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('QrCode chat'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.fromLTRB(30, 20, 30, 60),
+                child: Text(
+                  textAlign: TextAlign.center,
+                  'Leia o QR Code para iniciar o chat com este usuário.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                  ),
+                ),
             ),
-            body: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
-                      child: const Text(
-                        textAlign: TextAlign.center,
-                        'Leia o QR Code para ver quais figurinhas você pode receber. Apenas figurinhas extras serão consideradas na troca.',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
-                      ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(25, 60, 25, 40),
-                    child: Image.asset('assets/images/qrcode.png'),
-                  ),
-                  Container(
-                    height: 80,
-                    margin: const EdgeInsets.only(top: 40),
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                      ),
-                      child: const Text('Gerar Qr Code'),
-                      onPressed: () async {},
-                    )
-                  ),
-                ],
-              ),
-            )));
+            QrImage(
+              data: "${Modular.get<User>().id}",
+              version: QrVersions.auto,
+              size: 200.0,
+            ),
+          ],
+        ));
   }
 }
