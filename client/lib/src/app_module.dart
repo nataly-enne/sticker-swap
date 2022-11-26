@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sticker_swap_client/src/core/entities/album_manager.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
+import 'package:sticker_swap_client/src/modules/chat/qrcode/presenter/qrcode_module.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/home_module.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_module.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/message_chat_module.dart';
@@ -57,6 +58,11 @@ class AppModule extends Module{
     ModuleRoute(
         '/recover',
         module: RecoverModule(),
+        transition: TransitionType.fadeIn
+    ),
+     ModuleRoute(
+        '/qrcode',
+        module: QRCodeModule(),
         transition: TransitionType.fadeIn
     ),
   ];
