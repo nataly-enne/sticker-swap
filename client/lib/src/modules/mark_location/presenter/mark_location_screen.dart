@@ -68,7 +68,7 @@ class _MarkLocationScreenState extends ModularState<MarkLocationScreen, MarkLoca
           child: SizedBox(
             height: 45,
             child: ElevatedButton(
-                onPressed: (){},
+                onPressed: controller.sendMessage,
                 child: const Text("Enviar")),
           ),
         )

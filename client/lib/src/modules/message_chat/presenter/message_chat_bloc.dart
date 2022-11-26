@@ -69,10 +69,14 @@ class MessageChatBloc{
         )),
         backgroundColor: Color(0xffCACBD6E5),
         context: Modular.routerDelegate.navigatorKey.currentContext!,
-        builder: (_) => MarkLocationModule()
+        builder: (_) => MarkLocationModule(markLocation: updateMarkLocation,)
     );
   }
 
+  void updateMarkLocation(MessagePlace message){
+    messages.add(message);
+    _messagesStream.add(messages);
+  }
 
   void dispose(){
     textController.dispose();
