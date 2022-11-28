@@ -37,9 +37,6 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Mensagem"),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -61,7 +58,7 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                         );
 
                       if(snapshot.data![index] is MessageSwapStickers)
-                        return MessageSwap();
+                        return MessageSwap(chat: widget.chat,);
 
                       if(snapshot.data![index] is MessagePlace)
                         return MessageLocalization(
