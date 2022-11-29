@@ -10,7 +10,7 @@ class MessageModel extends Message {
   factory MessageModel.fromMap(Map<String, dynamic> map) {
     return MessageModel(
       id: map['id'],
-      type: map['type'], 
+      type: map['type'],
       message: map['message'],
       idSender: map['idSender'],
     );
