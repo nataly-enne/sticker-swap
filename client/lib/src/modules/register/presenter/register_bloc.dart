@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-class SplashScreenBloc{
+class RegisterBloc{
   void verifyAuth()=> Modular.to.pushReplacementNamed("/login/");
 }

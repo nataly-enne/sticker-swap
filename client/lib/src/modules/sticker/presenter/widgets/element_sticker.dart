@@ -17,7 +17,7 @@ class ElementSticker extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 65,
-      width: 100,
+      width: 90,
 
       child: Stack(
         alignment: Alignment.topRight,
@@ -63,7 +63,7 @@ class ElementSticker extends StatelessWidget {
               ),
               margin: const EdgeInsets.only(right: 5),
               child: Text(
-                "+${sticker.quantity}",
+                "+${sticker.quantity - 1}",
                 style: const TextStyle(fontSize: 10),
               ),
             ),

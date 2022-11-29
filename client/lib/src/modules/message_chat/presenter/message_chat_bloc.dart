@@ -3,9 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/chat/domain/entities/chat.dart';
+import 'package:sticker_swap_client/src/modules/create_swap/presenter/create_swap_module.dart';
+import 'package:sticker_swap_client/src/modules/mark_location/presenter/mark_location_module.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_place.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
+import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_swap_stickers.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/usecases/get_messages.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_localization.dart';
 import 'package:sticker_swap_client/src/utils/consts/status_message_confirm.dart';
@@ -39,6 +42,16 @@ class MessageChatBloc{
     }
   }
 
+  void avaliableSwap({
+    required MessageSwapStickers message,
+    required int newStatus
+  }){
+    if(message.status == StatusMessageConfirm.wait){
+      message.status = newStatus;
+      _messagesStream.sink.add(messages);
+    }
+  }
+
   void sendMessage(){
     if(textController.text.isNotEmpty){
       messages.add(
@@ -47,6 +60,35 @@ class MessageChatBloc{
       textController.clear();
       _messagesStream.sink.add(messages);
     }
+  }
+
+  void markLocation() async{
+    await showModalBottomSheet<dynamic>(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
+            topLeft:  Radius.circular(12.0),
+            topRight:  Radius.circular(12.0)
+        )),
+        backgroundColor: Color(0xffCACBD6E5),
+        context: Modular.routerDelegate.navigatorKey.currentContext!,
+        builder: (_) => MarkLocationModule(markLocation: updateMarkLocation,)
+    );
+  }
+
+  void swapSticker() async{
+    await showModalBottomSheet<dynamic>(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
+            topLeft:  Radius.circular(12.0),
+            topRight:  Radius.circular(12.0)
+        )),
+        backgroundColor: Color(0xffCACBD6E5),
+        context: Modular.routerDelegate.navigatorKey.currentContext!,
+        builder: (_) => CreateSwapModule()
+    );
+  }
+
+  void updateMarkLocation(MessagePlace message){
+    messages.add(message);
+    _messagesStream.add(messages);
   }
 
   void dispose(){

@@ -24,6 +24,7 @@ class SearchChat extends StatelessWidget {
             ),
           ),
           border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
+            contentPadding: const EdgeInsets.all(0),
             suffixIcon: IconButton(
                 onPressed: onSearch,
                 icon: const Icon(Icons.search)

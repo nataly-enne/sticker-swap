@@ -3,28 +3,33 @@ import 'package:sticker_swap_client/src/modules/login/config/api.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class LoginDemo extends StatefulWidget {
+class RecoverScreen extends StatefulWidget {
   @override
-  LoginDemoState createState() => LoginDemoState();
+  RecoverScreenState createState() => RecoverScreenState();
 }
 
-class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
+class RecoverScreenState extends ModularState<RecoverScreen, LoginBloc> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
+  TextEditingController _password_confirm = TextEditingController();
   bool _validate = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Log in'),
+          title: Text('Recuperar senha'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.fromLTRB(25, 60, 25, 40),
-              child: Image.asset('assets/images/logo.png'),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 40, 5, 5),
+              child: Text('Esqueceu a senha?', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 5, 5, 30),
+              child: Text('Por favor insira seu email para mudar sua senha.', style: TextStyle(fontWeight: FontWeight.w300)),
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -34,39 +39,13 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(90.0),
                     ),
-                    labelText: 'Email',
+                    labelText: 'Email', 
                     prefixIcon: Icon(Icons.email),
                     hintText: 'email@example.com',
+                    contentPadding: EdgeInsets.all(0),
                     errorText: !_validate ? "Formato inválido" : null
                 ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: TextField(
-                controller: _password,
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(90.0),
-                    ),
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.key),
-                ),
-              ),
-            ),
-            Container(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-              child: TextButton(
-                  onPressed: () {controller.toRecoverScreen();},
-                  child: Text(
-                    'Esqueceu a senha?',
-                    style: TextStyle(color: Color.fromARGB(255, 31, 114, 240)),
-                  ),
-                ),
-            ),
             ),
             Container(
                 height: 80,
@@ -75,29 +54,14 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  child: const Text('Log In'),
+                  child: const Text('Continuar'),
                   onPressed: () async{
                     setState(() {
                       RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                     });
                     controller.verifyAuth();
-                    debugPrint(_email.text);
-                    debugPrint(_password.text);
-                    var jwt = await login(_email.text, _password.text);
-                    if(!_validate || jwt == null){
-                      return;
-                    }
-                    //Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
-                    controller.verifyAuth();
                   },
                 )),
-            TextButton(
-              onPressed: () {controller.toRegisterScreen();},
-              child: Text(
-                'Registre-se',
-                style: TextStyle(color: Colors.grey[600]),
-              ),
-            ),
           ],
         ));
 

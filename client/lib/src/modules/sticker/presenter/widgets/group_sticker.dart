@@ -14,7 +14,7 @@ class GroupSticker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 125,
+      width: 115,
       height: 135,
       child: Column(
         children: [

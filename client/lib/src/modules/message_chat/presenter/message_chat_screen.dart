@@ -51,21 +51,26 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) {
-                      if(snapshot.data![index] is MessageSimple)
+                      if(snapshot.data![index] is MessageSimple) {
                         return MessageTile(
                           message: snapshot.data![index],
                           isMy: controller.isMyMessage(snapshot.data![index]),
                         );
+                      }
+                      if(snapshot.data![index] is MessageSwapStickers) {
+                        return MessageSwap(
+                          message: snapshot.data![index] as MessageSwapStickers,
+                          isMy: controller.isMyMessage(snapshot.data![index]),
+                          avaliableSwap: controller.avaliableSwap,                        );
+                      }
 
-                      if(snapshot.data![index] is MessageSwapStickers)
-                        return MessageSwap(chat: widget.chat,);
-
-                      if(snapshot.data![index] is MessagePlace)
+                      if(snapshot.data![index] is MessagePlace) {
                         return MessageLocalization(
                             message: snapshot.data![index] as MessagePlace,
                             isMy: controller.isMyMessage(snapshot.data![index]),
                             avaliableLocalization: controller.avaliableLocalization,
                         );
+                      }
 
                       return SizedBox(height: 2,);
                     },
@@ -76,6 +81,8 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
           ),
           BottomMessageChat(
             controller: controller.textController,
+            markLocation: controller.markLocation,
+            swapSticker: controller.swapSticker,
             sendText: controller.sendMessage,
           )
         ],

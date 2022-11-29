@@ -36,8 +36,8 @@ class _FilterScreenState extends ModularState<FilterScreen, FilterBloc> {
           builder: (_, snapshot) {
             if(snapshot.data!)
               return const Center(child: CircularProgressIndicator(),);
-            else
-            return Column(
+            else {
+              return Column(
               children: [
                 StreamBuilder<int>(
                   initialData: 0,
@@ -75,11 +75,18 @@ class _FilterScreenState extends ModularState<FilterScreen, FilterBloc> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(onPressed: controller.filterStickers, child: Text("Filtrar")),
+                  padding: const EdgeInsets.all(20),
+                  child: 
+                  SizedBox(
+                    height: 45,
+                    child: ElevatedButton(
+                      onPressed: controller.filterStickers, 
+                      child: const Text("Filtrar")),
+                  ),
                 )
               ],
             );
+            }
           },
         ),
       ],
