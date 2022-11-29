@@ -65,7 +65,8 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                         return MessageSwap(
                           message: snapshot.data![index] as MessageSwapStickers,
                           isMy: controller.isMyMessage(snapshot.data![index]),
-                          avaliableSwap: controller.avaliableSwap,                        );
+                          avaliableSwap: controller.avaliableSwap,
+                        );
                       }
 
                       if(snapshot.data![index] is MessagePlace) {
