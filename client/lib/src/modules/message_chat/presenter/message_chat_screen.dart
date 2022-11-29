@@ -37,9 +37,6 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Mensagem"),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -60,7 +57,6 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                           isMy: controller.isMyMessage(snapshot.data![index]),
                         );
                       }
-
                       if(snapshot.data![index] is MessageSwapStickers) {
                         return MessageSwap(
                           message: snapshot.data![index] as MessageSwapStickers,
