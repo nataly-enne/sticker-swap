@@ -4,7 +4,7 @@ import 'package:sticker_swap_client/src/core/entities/album.dart';
 import 'package:sticker_swap_client/src/core/entities/album_manager.dart';
 import 'package:sticker_swap_client/src/modules/filter/domain/entities/filter.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
-import 'package:sticker_swap_client/src/utils/consts/filter_modes_utils.dart';
+import 'package:sticker_swap_client/src/utils/const/filter_modes_utils.dart';
 
 class FilterBloc{
 

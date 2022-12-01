@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_place.dart';
-import 'package:sticker_swap_client/src/utils/consts/status_message_confirm.dart';
+import 'package:sticker_swap_client/src/utils/const/status_message_confirm.dart';
 
 class MessageLocalization extends StatelessWidget {
   final bool isMy;
   final MessagePlace message;
-  final Function({required MessagePlace messagePlace, required int newStatus}) avaliableLocalization;
+  final Function({required MessagePlace messagePlace, required int newStatus}) availableLocalization;
 
   const MessageLocalization({
     Key? key,
     required this.isMy,
     required this.message,
-    required this.avaliableLocalization
+    required this.availableLocalization
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if(isMy) {
       return Padding(
-        padding: const EdgeInsets.fromLTRB(14.0, 4.0, 2.0, 4.0),
+        padding: const EdgeInsets.fromLTRB(100.0, 10.0, 10.0, 4.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,20 +27,20 @@ class MessageLocalization extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border.all(color: Colors.grey, width: 1),
-                  borderRadius: BorderRadius.all(Radius.circular(15))
+                  border: Border.all(color: Colors.grey, width: 2),
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
               ),
 
-              child: _textPlace(),
+              child: _textPlace(textStyle: const TextStyle(fontWeight: FontWeight.w500, color: Colors.black,  wordSpacing: 1)),
             ),
 
-            _buttomStatus()
+            _buttonStatus()
           ],
         ),
       );
     }else{
       return Padding(
-        padding: const EdgeInsets.fromLTRB(2.0, 2.0, 14.0, 2.0),
+        padding: const EdgeInsets.fromLTRB(10.0, 10.0, 100.0, 10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -51,7 +51,7 @@ class MessageLocalization extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(15))
               ),
 
-              child: _textPlace(textStyle: TextStyle(color: Colors.white)),
+              child: _textPlace(textStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500, wordSpacing: 1)),
             ),
 
             if(message.status == StatusMessageConfirm.wait)
@@ -64,7 +64,7 @@ class MessageLocalization extends StatelessWidget {
                 ],
               )
             else
-              _buttomStatus()
+              _buttonStatus()
           ],
         ),
       );
@@ -79,38 +79,42 @@ class MessageLocalization extends StatelessWidget {
         Divider(height: 8, color: textStyle?.color,),
         Text("Local: ${message.place}", style: textStyle,),
         Text("Horário: ${message.time}", style: textStyle,),
+        Text("Data: ${message.date}", style: textStyle,),
+
       ],
     );
   }
 
-  Widget _buttomStatus(){
-    if(message.status == StatusMessageConfirm.accepted)
+  Widget _buttonStatus(){
+    if(message.status == StatusMessageConfirm.accepted) {
       return _buttonAccepted();
-    if(message.status == StatusMessageConfirm.rejected)
+    }
+    if(message.status == StatusMessageConfirm.rejected) {
       return _buttonReject();
+    }
 
-    return SizedBox(height: 2, width: 0,);
+    return const SizedBox(height: 2, width: 2,);
   }
 
   Widget _buttonAccepted(){
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(4.0),
       child: InkWell(
         onTap: (){
-          avaliableLocalization(
+          availableLocalization(
             messagePlace: message,
             newStatus: StatusMessageConfirm.accepted
           );
         },
-        borderRadius: BorderRadius.all(Radius.circular(100)),
+        borderRadius: const BorderRadius.all(Radius.circular(100)),
         child: Ink(
           padding: const EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.blue,
             borderRadius: BorderRadius.all(Radius.circular(100)),
           ),
 
-          child: Icon(Icons.check, color: Colors.white, size: 18,),
+          child: const Icon(Icons.check, color: Colors.white, size: 18,),
         ),
       ),
     );
@@ -118,23 +122,23 @@ class MessageLocalization extends StatelessWidget {
 
   Widget _buttonReject(){
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(4.0),
       child: InkWell(
         onTap: (){
-          avaliableLocalization(
+          availableLocalization(
               messagePlace: message,
               newStatus: StatusMessageConfirm.rejected
           );
         },
-        borderRadius: BorderRadius.all(Radius.circular(100)),
+        borderRadius: const BorderRadius.all(Radius.circular(100)),
         child: Ink(
           padding: const EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff9A1032),
             borderRadius: BorderRadius.all(Radius.circular(100)),
           ),
 
-          child: Icon(Icons.close, color: Colors.white, size: 18,),
+          child: const Icon(Icons.close, color: Colors.white, size: 18,),
         ),
       ),
     );

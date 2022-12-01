@@ -1,4 +1,4 @@
-import 'package:sticker_swap_client/src/utils/consts/filter_modes_utils.dart';
+import 'package:sticker_swap_client/src/utils/const/filter_modes_utils.dart';
 
 class Filter{
   bool filterOn = false;

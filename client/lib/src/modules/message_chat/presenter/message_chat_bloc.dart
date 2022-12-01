@@ -10,8 +10,7 @@ import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/mes
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_simple.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/entities/message_swap_stickers.dart';
 import 'package:sticker_swap_client/src/modules/message_chat/domain/usecases/get_messages.dart';
-import 'package:sticker_swap_client/src/modules/message_chat/presenter/widgets/message_localization.dart';
-import 'package:sticker_swap_client/src/utils/consts/status_message_confirm.dart';
+import 'package:sticker_swap_client/src/utils/const/status_message_confirm.dart';
 
 class MessageChatBloc{
   final User _user = Modular.get<User>();
@@ -32,7 +31,7 @@ class MessageChatBloc{
   bool isMyMessage(Message message)=> message.idSender == _user.id;
 
 
-  void avaliableLocalization({
+  void availableLocalization({
     required MessagePlace messagePlace,
     required int newStatus
   }){
@@ -42,7 +41,7 @@ class MessageChatBloc{
     }
   }
 
-  void avaliableSwap({
+  void availableSwap({
     required MessageSwapStickers message,
     required int newStatus
   }){
@@ -68,7 +67,7 @@ class MessageChatBloc{
             topLeft:  Radius.circular(12.0),
             topRight:  Radius.circular(12.0)
         )),
-        backgroundColor: Color(0xffCACBD6E5),
+        backgroundColor: Color(0xC7CACBD6),
         context: Modular.routerDelegate.navigatorKey.currentContext!,
         builder: (_) => MarkLocationModule(markLocation: updateMarkLocation,)
     );
@@ -80,7 +79,7 @@ class MessageChatBloc{
             topLeft:  Radius.circular(12.0),
             topRight:  Radius.circular(12.0)
         )),
-        backgroundColor: Color(0xffCACBD6E5),
+        backgroundColor: Color(0xC7CACBD6),
         context: Modular.routerDelegate.navigatorKey.currentContext!,
         builder: (_) => CreateSwapModule()
     );

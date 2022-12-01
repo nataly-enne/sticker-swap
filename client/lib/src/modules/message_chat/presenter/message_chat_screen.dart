@@ -45,8 +45,9 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
               child: StreamBuilder<List<Message>>(
                 stream: controller.getMessagesView,
                 builder: (_, snapshot) {
-                  if(!snapshot.hasData)
+                  if(!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator(),);
+                  }
 
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
@@ -61,18 +62,20 @@ class _MessageChatScreenState extends ModularState<MessageChatScreen, MessageCha
                         return MessageSwap(
                           message: snapshot.data![index] as MessageSwapStickers,
                           isMy: controller.isMyMessage(snapshot.data![index]),
-                          avaliableSwap: controller.avaliableSwap,                        );
+                          availableSwap: controller.availableSwap, 
+                          chat: widget.chat,                        
+                          );
                       }
 
                       if(snapshot.data![index] is MessagePlace) {
                         return MessageLocalization(
                             message: snapshot.data![index] as MessagePlace,
                             isMy: controller.isMyMessage(snapshot.data![index]),
-                            avaliableLocalization: controller.avaliableLocalization,
+                            availableLocalization: controller.availableLocalization,
                         );
                       }
 
-                      return SizedBox(height: 2,);
+                      return const SizedBox(height: 2,);
                     },
                   );
 

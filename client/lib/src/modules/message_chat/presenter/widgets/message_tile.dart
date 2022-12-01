@@ -12,15 +12,21 @@ class MessageTile extends StatelessWidget {
       return Align(
         alignment: Alignment.topRight,
         child: Container(
-          margin: const EdgeInsets.fromLTRB(14.0, 4.0, 2.0, 4.0),
+          margin: const EdgeInsets.fromLTRB(100.0, 10.0, 10.0, 4.0),
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.grey, width: 1),
-            borderRadius: BorderRadius.all(Radius.circular(15))
+            border: Border.all(color: Colors.grey, width: 2),
+            borderRadius: const  BorderRadius.all(Radius.circular(15))
           ),
 
-          child: Text(message.message,),
+          child: Text(
+            message.message,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              wordSpacing: 1
+            ),  
+          ),
         ),
       );
     }else{
@@ -36,7 +42,11 @@ class MessageTile extends StatelessWidget {
 
           child: Text(
             message.message,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+              wordSpacing: 1
+            ),
           ),
         ),
       );
