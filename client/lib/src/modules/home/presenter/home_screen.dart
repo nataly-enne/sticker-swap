@@ -7,6 +7,8 @@ import 'package:sticker_swap_client/src/modules/home/presenter/widgets/home_bott
 import 'package:sticker_swap_client/src/modules/settings/presenter/settings_module.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/sticker_module.dart';
 
+import '../../../core/entities/auth.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -15,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
+  Auth auth = Modular.get<Auth>();
 
   @override
   void dispose() {
@@ -24,6 +27,7 @@ class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(auth.token);
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(statusBarColor: Color(0xff9A1032)),
         child: StreamBuilder<int>(

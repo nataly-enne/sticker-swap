@@ -3,15 +3,19 @@ import 'package:sticker_swap_client/src/modules/login/config/api.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class LoginDemo extends StatefulWidget {
+import '../../../core/entities/auth.dart';
+
+
+class Login extends StatefulWidget {
   @override
-  LoginDemoState createState() => LoginDemoState();
+  LoginState createState() => LoginState();
 }
 
-class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
+class LoginState extends ModularState<Login, LoginBloc> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _validate = true;
+  Auth auth = Modular.get<Auth>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,14 +84,10 @@ class LoginDemoState extends ModularState<LoginDemo, LoginBloc> {
                     setState(() {
                       RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                     });
-                    controller.verifyAuth();
-                    debugPrint(_email.text);
-                    debugPrint(_password.text);
-                    var jwt = await login(_email.text, _password.text);
-                    if(!_validate || jwt == null){
+                    auth.token = await controller.login(_email.text, _password.text);
+                    if(!_validate || auth.token == null){
                       return;
                     }
-                    //Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
                     controller.verifyAuth();
                   },
                 )),
