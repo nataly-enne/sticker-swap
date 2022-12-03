@@ -15,4 +15,10 @@ class StickerModel extends Sticker {
       quantity: map['quantity'],
     );
   }
+
+  static List<StickerModel> listFromJson(List<dynamic> json) {
+    return (json)
+        .map((e) => StickerModel.fromMap(e as Map<String, dynamic>))
+        .toList();
+  }
 }
