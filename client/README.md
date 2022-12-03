@@ -25,7 +25,7 @@ flutter create --platforms=windows,macos,linux,android .
 2. Configure as váriaveis de ambiente, para isso crie um arquivo .env com:
 
 ```
-API_URI="localhost:8081"
+API_URI="http://localhost:8081"
 ```
 
 localhost:8081 é o endereço padrão de execução do sticker_swap_server

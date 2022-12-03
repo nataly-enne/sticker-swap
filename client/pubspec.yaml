@@ -41,4 +41,4 @@ flutter:
   assets:
     - assets/images/
     - assets/images/bandeiras/
-    #- .env
+    - .env

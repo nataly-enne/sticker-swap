@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sticker_swap_client/src/modules/login/config/api.dart';
-import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
+import 'package:sticker_swap_client/src/modules/register/presenter/register_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -8,7 +8,7 @@ class RegisterScreen extends StatefulWidget {
   RegisterScreenState createState() => RegisterScreenState();
 }
 
-class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
+class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   TextEditingController _password_confirm = TextEditingController();
@@ -82,11 +82,10 @@ class RegisterScreenState extends ModularState<RegisterScreen, LoginBloc> {
                     setState(() {
                       RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                     });
-                    controller.verifyAuth();
-                    debugPrint(_email.text);
-                    debugPrint(_password.text);
-                    var jwt = await login(_email.text, _password.text);
-                    if(!_validate || jwt == null){
+
+                    var response = await controller.register(_email.text, _password.text);
+                    if( response?['status'] != null){
+                      //response!['status']
                       return;
                     }
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
