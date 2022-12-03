@@ -3,7 +3,7 @@ module.exports = class Usuario {
     constructor(atributes) {
         if (atributes.id) this.id = atributes.id;
         this.username = atributes.username;
-        this.senha = atributes.senha;
+        this.password = atributes.password;
         this.nome = atributes.nome;
         this.cpf = atributes.cpf;
         this.email = atributes.email;

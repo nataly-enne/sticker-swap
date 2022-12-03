@@ -6,18 +6,19 @@ import 'package:flutter/material.dart';
 
 class RegisterBloc{
   void verifyAuth()=> Modular.to.pushReplacementNamed("/login/");
-  
-  Future<String?> register(email, password) async{
+
+  Future<Map?> register(email, password) async{
     Dio dio = new Dio();
     var response = await dio.post(dotenv.env['API_URI']! + '/api/cadastro', data: {'email': email, 'password': password});
     debugPrint(dotenv.env['API_URI']);
-    if(response.statusCode != 201){
-      var decodedResponse = response.data as Map;
-      //debugPrint(decodedResponse['token']);
-      return decodedResponse['msg'];
+    var decodedResponse = response.data as Map;
+    debugPrint(decodedResponse.toString());
+    if(response.statusCode == 201){
+      
+      return decodedResponse;
     }
-
-    return null;
+    decodedResponse['status'] = response.statusCode;
+    return decodedResponse;
   }
 
   Future<String?> getRandomNumber(token) async{

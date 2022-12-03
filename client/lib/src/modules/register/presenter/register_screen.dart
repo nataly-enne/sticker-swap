@@ -82,7 +82,12 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
                     setState(() {
                       RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                     });
-                    controller.register(_email.text, _password.text);
+
+                    var response = await controller.register(_email.text, _password.text);
+                    if( response?['status'] != null){
+                      //response!['status']
+                      return;
+                    }
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
                     controller.verifyAuth();
                   },

@@ -3,7 +3,7 @@ const db = require('../../utils/db')
 const Usuario = require('../usuario.model')
 
 async function inserirUsuario(usuario) {
-    let query = "INSERT INTO user SET password = " + db.mysql.escape(usuario.senha) + ", email = " + db.mysql.escape(usuario.email);
+    let query = "INSERT INTO user SET password = " + db.mysql.escape(usuario.password) + ", email = " + db.mysql.escape(usuario.email);
     connection = db.connect();
     await connection.query(query);
     connection.end(); 

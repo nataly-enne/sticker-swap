@@ -10,14 +10,14 @@ class LoginBloc{
   void toRegisterScreen()=> Modular.to.pushNamed("/register/");
   void toRecoverScreen()=> Modular.to.pushNamed("/recover/");
 
-  Future<String?> login(email, password) async{
+  Future<Map?> login(email, password) async{
     Dio dio = new Dio();
     var response = await dio.post(dotenv.env['API_URI']! + '/api/login', data: {'email': email, 'password': password});
     debugPrint(dotenv.env['API_URI']);
     if(response.statusCode == 201){
       var decodedResponse = response.data as Map;
       //debugPrint(decodedResponse['token']);
-      return decodedResponse['token'];
+      return decodedResponse;
     }
 
     return null;

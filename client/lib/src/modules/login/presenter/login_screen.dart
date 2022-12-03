@@ -84,10 +84,12 @@ class LoginState extends ModularState<Login, LoginBloc> {
                     setState(() {
                       RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_email.text) ? _validate = true: _validate = false;
                     });
-                    auth.token = await controller.login(_email.text, _password.text);
-                    if(!_validate || auth.token == null){
+                    var response = await controller.login(_email.text, _password.text);
+                    if(!_validate || response?['token'] == null){
+                      //response['msg']
                       return;
                     }
+                    auth.token = response!['token'];
                     controller.verifyAuth();
                   },
                 )),

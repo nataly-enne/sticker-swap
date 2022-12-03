@@ -20,31 +20,30 @@ async function deleteUsuario(id) {
 
 
 async function postUsuario(body) {
-    let novoUsuario = new Usuario({senha: body.senha, email: body.email});
+    let novoUsuario = new Usuario({password: body.password, email: body.email});
     await usuarioDAO.inserirUsuario(novoUsuario);
 }
 
 async function cadastroUsuario(body, res) {
     let usuario = await usuarioDAO.recuperaUsuarioPorEmail(body.email);
     if (usuario != undefined) return  res.status(409).send({msg: 'Usuário já existe'});
-    await bcrypt.hash(body.senha, 10, async (err, hash) => {
+    await bcrypt.hash(body.password, 10, async (err, hash) => {
         if(err) return  res.status(500).send({msg:'Erro interno'});
         try{
-            body.senha = hash;
+            body.password = hash;
             await postUsuario(body);
         }catch(e){
             console.log(e);
             return res.status(400).send({msg: 'Bad request'});
+        }finally{
+            return res.status(201).send({msg: 'OK'});
         }
-    });
-    return res.status(201).send({msg: 'OK'});
+    });  
 }
 
 async function loginUsuario(body, res) {
     let usuario = await usuarioDAO.recuperaUsuarioPorEmail(body.email);
     if (usuario == undefined) return res.status(400).send({msg: 'Usuário não existe'});
-    console.log(body)
-    console.log(usuario)
     bcrypt.compare(body.password, usuario.password, (err, result) => {
         if (!result) return res.status(401).send({msg: 'Senha incorreta'});
         const token = jwt.sign({email: usuario.email}, auth.jwtSecretKey,{ expiresIn: '1h' });
