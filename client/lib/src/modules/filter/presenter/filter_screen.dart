@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sticker_swap_client/src/core/components/app_bar_bottom_sheet.dart';
 import 'package:sticker_swap_client/src/modules/filter/presenter/filter_bloc.dart';
-import 'package:sticker_swap_client/src/utils/consts/filter_modes_utils.dart';
+import 'package:sticker_swap_client/src/utils/const/filter_modes_utils.dart';
 
 class FilterScreen extends StatefulWidget {
   @override

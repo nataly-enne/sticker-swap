@@ -30,7 +30,7 @@ class _MarkLocationScreenState extends ModularState<MarkLocationScreen, MarkLoca
           child: InputMarkLocation(
             hintText: "Escreva o local",
             inputType: TextInputType.text,
-            controller: controller.localController,
+            controller: controller.placeController,
           ),
         ),
 
@@ -44,7 +44,7 @@ class _MarkLocationScreenState extends ModularState<MarkLocationScreen, MarkLoca
                   child: InputMarkLocation(
                     hintText: "Escreva a data",
                     inputType: TextInputType.datetime,
-                    controller: controller.dataController,
+                    controller: controller.dateController,
                   )
               ),
               Flexible(
@@ -55,8 +55,8 @@ class _MarkLocationScreenState extends ModularState<MarkLocationScreen, MarkLoca
                   flex: 9,
                   child: InputMarkLocation(
                     hintText: "Escreva o horário",
-                    inputType: TextInputType.datetime,
-                    controller: controller.horarioController,
+                    inputType: TextInputType.number,
+                    controller: controller.timeController,
                   )
               )
             ],

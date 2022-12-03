@@ -8,8 +8,8 @@ import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/group_
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/header_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/search_sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/sticker_album_progress.dart';
-import 'package:sticker_swap_client/src/utils/consts/group_names_utils.dart';
-import 'package:sticker_swap_client/src/utils/consts/group_sticker_utils.dart';
+import 'package:sticker_swap_client/src/utils/const/group_names_utils.dart';
+import 'package:sticker_swap_client/src/utils/const/group_sticker_utils.dart';
 
 class StickerScreen extends StatefulWidget {
 

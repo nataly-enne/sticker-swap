@@ -9,7 +9,7 @@ import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/usecases/get_album.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/widgets/bottom_sheet_sticker.dart';
-import 'package:sticker_swap_client/src/utils/consts/limits_group_utils.dart';
+import 'package:sticker_swap_client/src/utils/const/limits_group_utils.dart';
 
 class StickerBloc{
 

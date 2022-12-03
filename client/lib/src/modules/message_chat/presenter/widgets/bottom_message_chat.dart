@@ -32,7 +32,9 @@ class BottomMessageChat extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "Escreva uma mensagem...",
                   contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(90.0),),  
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(90.0),  
+                  )
                 ),
               )
               ),
@@ -54,16 +56,16 @@ class BottomMessageChat extends StatelessWidget {
         ),
         const Divider(height: 2),
         SizedBox(
-          height: 60,
+          height: 50,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal:8),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             children: [
               TextButton(
                 onPressed: swapSticker,
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                    side: BorderSide(color: Color(0xff9A1032)),
+                    side: const BorderSide(color: Color(0xff9A1032)),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
                   ),
                 child: const Text(
@@ -77,7 +79,7 @@ class BottomMessageChat extends StatelessWidget {
                   onPressed: markLocation,
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                      side: BorderSide(color: Color(0xff9A1032)),
+                      side: const BorderSide(color: Color(0xff9A1032)),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
                     ),
                   child: const Text(
@@ -90,7 +92,7 @@ class BottomMessageChat extends StatelessWidget {
                 onPressed: (){},
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                    side: BorderSide(color: Color(0xff9A1032)),
+                    side: const BorderSide(color: Color(0xff9A1032)),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
                   ),
                 child: const Text(
