@@ -7,6 +7,13 @@ async function inserirUsuario(usuario) {
     connection = db.connect();
     await connection.query(query);
     connection.end(); 
+
+    console.log(db.mongo_client)
+    await db.mongo_client.connect();
+    const mdb = db.mongo_client.db('stickerswap');
+    const collection = mdb.collection('User');
+    await collection.insertOne({email: usuario.email});
+    await db.mongo_client.close()
 }
 
 async function listarUsuarios() {

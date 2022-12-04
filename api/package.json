@@ -24,6 +24,7 @@
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.12.1",
     "mysql": "^2.18.1",
     "sync-mysql": "^3.0.1"
   }
