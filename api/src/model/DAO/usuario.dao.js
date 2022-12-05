@@ -36,7 +36,7 @@ async function listarUsuarios() {
 
 
 async function recuperaUsuarioPorId(id) {
-    let query = "SELECT * FROM usuario WHERE id = "+ db.mysql.escape(id);
+    let query = "SELECT * FROM user WHERE id = "+ db.mysql.escape(id);
     connection = db.connect();
     let response = await connection.query(query);
     connection.end();

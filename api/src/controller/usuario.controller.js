@@ -45,8 +45,8 @@ async function loginUsuario(body, res) {
     let usuario = await usuarioDAO.recuperaUsuarioPorEmail(body.email);
     if (usuario == undefined) return res.status(400).send({msg: 'Usuário não existe'});
     bcrypt.compare(body.password, usuario.password, (err, result) => {
-        if (!result) return res.status(401).send({msg: 'Senha incorreta'});
-        const token = jwt.sign({email: usuario.email}, auth.jwtSecretKey,{ expiresIn: '1h' });
+        if (!result) return res.status(401).send({msg: 'Login ou senha incorreta'});
+        const token = jwt.sign({id: usuario.id}, auth.jwtSecretKey,{ expiresIn: '1h' });
         return res.status(201).send({msg: 'OK', token, id: usuario.id});
     });
     
@@ -63,7 +63,7 @@ async function authToken(req) {
     try{
         const token = req.headers.authorization.split(' ')[1];
         const decoded = jwt.verify(token, auth.jwtSecretKey);
-        let usuario = await usuarioDAO.recuperaUsuarioPorEmail(decoded.email);
+        let usuario = await usuarioDAO.recuperaUsuarioPorId(decoded.id);
         if (usuario != undefined) {
             return decoded;
         }

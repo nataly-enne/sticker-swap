@@ -1,14 +1,17 @@
+const albumDAO = require('../model/DAO/album.dao')
+
 async function getAlbum(id) {
-    return await usuarioDAO.recuperaUsuarioPorId(id);
+    return await albumDAO.getAlbum(id);
 }
 
 
-async function getAlbumId(email) {
-    return await usuarioDAO.recuperaUsuarioPorId(id);
+async function updateAlbum(id, body) {
+    return await albumDAO.updateAlbum(id, body);
 }
 
 
-async function postAlbum(body) {
-    let novoUsuario = new Usuario({password: body.password, email: body.email});
-    await usuarioDAO.inserirUsuario(novoUsuario);
+async function postAlbum(id, body) {
+    await albumDAO.postAlbum(id, body);
 }
+
+module.exports = {getAlbum, updateAlbum, postAlbum};

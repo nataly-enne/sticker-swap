@@ -47,10 +47,10 @@ class GetAlbumImpl extends IGetAlbum{
     var response = await getAlbum(idUser);
 
     for (int i = 0; i<38; i++){
-      collectionStickers[i] = StickerModel.listFromJson(response['collectionStickers'][i]);
+      collectionStickers[i] = StickerModel.listFromJson(response!['collectionStickers'][i]);
     }
 
-    album.colectionStickers= collectionStickers ;
+    album.colectionStickers = collectionStickers ;
 
     return album;
   }
