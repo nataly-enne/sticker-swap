@@ -7,7 +7,8 @@ part of 'album.dart';
 // **************************************************************************
 
 Album _$AlbumFromJson(Map<String, dynamic> json) => Album()
-  ..collectionStickers = (json['collectionStickers'] as Map<String, dynamic>).map(
+  ..collectionStickers =
+      (json['collectionStickers'] as Map<String, dynamic>).map(
     (k, e) => MapEntry(
         int.parse(k),
         (e as List<dynamic>)

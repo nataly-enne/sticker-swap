@@ -25,9 +25,9 @@ abstract class IGetAlbum{
   }
 
 
-  Future<Map?> postAlbum(userId, collectionStickers) async{
+  Future<Map?> postAlbum(userId, album) async{
     Dio dio = new Dio();
-    var response = await dio.post('${dotenv.env['API_URI']!}/api/usuario/${userId}/album', data: {'collectionStickers': collectionStickers});
+    var response = await dio.post('${dotenv.env['API_URI']!}/api/usuario/${userId}/album', data: {"collectionStickers": album['collectionStickers']});
     if(response.statusCode == 201){
       var decodedResponse = response.data as Map;
       //debugPrint(decodedResponse['token']);
@@ -37,9 +37,9 @@ abstract class IGetAlbum{
     return null;
   }
 
-    Future<Map?> putAlbum(userId, collectionStickers) async{
+    Future<Map?> putAlbum(userId, album) async{
     Dio dio = new Dio();
-    var response = await dio.put('${dotenv.env['API_URI']!}/api/usuario/${userId}/album', data: {'collectionStickers': collectionStickers});
+    var response = await dio.put('${dotenv.env['API_URI']!}/api/usuario/${userId}/album', data: {"collectionStickers": album['collectionStickers']});
     if(response.statusCode == 201){
       var decodedResponse = response.data as Map;
       //debugPrint(decodedResponse['token']);

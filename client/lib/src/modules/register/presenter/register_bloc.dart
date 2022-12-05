@@ -43,6 +43,7 @@ class RegisterBloc{
 
   void setUpAlbum(userId){
     Album novo = generateAlbum();
+    debugPrint(novo.toJson().toString());
     postAlbum(userId, novo.toJson());
   }
 }
