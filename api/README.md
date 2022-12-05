@@ -36,9 +36,10 @@ MYSQL_DB=stickerswap
 MYSQL_PORT=3306
 
 MONGO_PORT=27017
-MONGO_USER=root
+MONGO_USER=stickerswap
 MONGO_PASSWORD=010203
-MONGO_URI=mongodb://stickerswap:010203@mongo:27017
+MONGO_URI=mongodb://stickerswap:010203@mongo:27017/
+MONGO_DB=stickerswap
 
 SECRET=?
 ```

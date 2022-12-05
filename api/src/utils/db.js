@@ -7,7 +7,6 @@ require('dotenv/config');
 const url = process.env.MONGO_URI;
 console.log(url)
 var mongo_client = new MongoClient(url);
-console.log(mongo_client)
 //const dbName = 'stickerswap';
 //await mongo_client.connect();
 //const db = mongo_client.db(dbName);

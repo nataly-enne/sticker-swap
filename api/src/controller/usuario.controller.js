@@ -47,7 +47,7 @@ async function loginUsuario(body, res) {
     bcrypt.compare(body.password, usuario.password, (err, result) => {
         if (!result) return res.status(401).send({msg: 'Senha incorreta'});
         const token = jwt.sign({email: usuario.email}, auth.jwtSecretKey,{ expiresIn: '1h' });
-        return res.status(201).send({msg: 'OK', token});
+        return res.status(201).send({msg: 'OK', token, id: usuario.id});
     });
     
 }

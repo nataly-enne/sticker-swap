@@ -40,7 +40,6 @@ class StickerBloc{
     }
   }
 
-
   ///<!Funções da interface>
   void setIdModePage(int newIdModePage){
     if(newIdModePage != idModePageNow){

@@ -50,6 +50,7 @@ services:
       - "SECRET=${SECRET}"
       - "API_PORT=${API_PORT}"
       - "MONGO_URI=${MONGO_URI}"
+      - "MONGO_DB=${MONGO_DB}"
 
 
 #docker run --rm --name mysql-test -e MYSQL_ROOT_PASSWORD=010203 -p 3306:3306 -d mysql mysqld --lower_case_table_names=1
