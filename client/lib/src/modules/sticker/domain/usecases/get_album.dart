@@ -34,9 +34,9 @@ abstract class IGetAlbum{
     Dio dio = new Dio();
     var response = await dio.post('${dotenv.env['API_URI']!}/api/usuario/${userId}/album', data: {"collectionStickers": album['collectionStickers']});
     if(response.statusCode == 200){
-      var decodedResponse = response.data as Map;
+      //var decodedResponse = response.data as Map;
       //debugPrint(decodedResponse['token']);
-      return decodedResponse;
+      //return decodedResponse;
     }
 
     return null;
@@ -66,7 +66,7 @@ class GetAlbumImpl extends IGetAlbum{
 
     var response = await getAlbum(user.id, auth.token);
 
-    album = Album.fromJson(response);
+    album = Album.fromJson(response['body']);
 
     // album.collectionStickers = collectionStickers ;
 
