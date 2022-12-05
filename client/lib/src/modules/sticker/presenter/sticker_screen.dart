@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sticker_swap_client/src/core/entities/auth.dart';
+import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker_group.dart';
 import 'package:sticker_swap_client/src/modules/sticker/presenter/sticker_bloc.dart';
@@ -22,10 +24,12 @@ class StickerScreen extends StatefulWidget {
 }
 
 class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
-
+  Auth auth = Modular.get<Auth>();
+  User user = Modular.get<User>();
+  
   @override
   void initState() {
-    controller.getAlbum();
+    controller.getAlbum(user, auth);
     super.initState();
   }
 
@@ -103,7 +107,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
     return Column(
       children: [
        for(int i = controller.firstGroup; i <= controller.lastGroup; i++)
-         if(controller.albumManager.albumView!.colectionStickers.containsKey(i))
+         if(controller.albumManager.albumView!.collectionStickers.containsKey(i))
            Padding(
              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
              child: Wrap(
@@ -125,7 +129,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                    ],
                  ),
 
-                 for(Sticker sticker in (controller.albumManager.albumView!.colectionStickers[i] as List<Sticker>))
+                 for(Sticker sticker in (controller.albumManager.albumView!.collectionStickers[i] as List<Sticker>))
                    ElementSticker(
                      sticker: sticker,
                      addSticker: controller.addSticker,

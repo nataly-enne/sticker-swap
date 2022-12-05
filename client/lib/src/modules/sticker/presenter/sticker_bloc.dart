@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:sticker_swap_client/src/core/entities/album.dart';
 import 'package:sticker_swap_client/src/core/entities/album_manager.dart';
+import 'package:sticker_swap_client/src/core/entities/auth.dart';
 import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/filter/presenter/filter_module.dart';
 import 'package:sticker_swap_client/src/modules/sticker/domain/entities/sticker.dart';
@@ -14,6 +15,7 @@ import 'package:sticker_swap_client/src/utils/const/limits_group_utils.dart';
 class StickerBloc{
 
   User user = Modular.get<User>();
+  Auth auth = Modular.get<Auth>();
   AlbumManager albumManager = Modular.get<AlbumManager>();
 
   IGetAlbum getAlbumUsecase = Modular.get<IGetAlbum>();
@@ -33,13 +35,13 @@ class StickerBloc{
 
 
   ///<!Casos de uso>
-  Future<void> getAlbum() async{
+  Future<void> getAlbum(user, auth) async{
     if(albumManager.albumView == null){
-      Album album = await getAlbumUsecase(idUser: user.id!);
+      Album album = await getAlbumUsecase(user: user, auth: auth);
       albumManager.setBaseAlbum(album);
+      _statusStream.sink.add(true);
     }
   }
-
 
   ///<!Funções da interface>
   void setIdModePage(int newIdModePage){
@@ -57,20 +59,20 @@ class StickerBloc{
     List<Sticker> sticksGroup = [];
     albumManager.albumView = albumManager.album;
     Album album = Album();
-    album.colectionStickers = {};
+    album.collectionStickers = {};
 
     for(int i =0; i < 38; i++){
       sticksGroup.clear();
 
-      if(albumManager.albumView!.colectionStickers.containsKey(i)){
-        for(Sticker sticker in (albumManager.albumView!.colectionStickers[i] as List<Sticker>)) {
+      if(albumManager.albumView!.collectionStickers.containsKey(i)){
+        for(Sticker sticker in (albumManager.albumView!.collectionStickers[i] as List<Sticker>)) {
           if(sticker.text.contains(searchController.text.toUpperCase()))
             sticksGroup.add(sticker);
         }
       }
 
       if(sticksGroup.isNotEmpty)
-        album.colectionStickers[i] = List.from(sticksGroup);
+        album.collectionStickers[i] = List.from(sticksGroup);
     }
 
     albumManager.albumView = album;
@@ -113,7 +115,7 @@ class StickerBloc{
     else
       albumManager.repetidas++;
 
-
+    putAlbum(user.id, albumManager.album.toJson(), auth.token);
     _idModePageStream.sink.add(1);
     _statusStream.sink.add(true);
     //Enviar adição para servidor e banco interno
@@ -127,6 +129,7 @@ class StickerBloc{
     else
       albumManager.repetidas--;
 
+    putAlbum(user.id, albumManager.album.toJson(), auth.token);
     _idModePageStream.sink.add(1);
     _statusStream.sink.add(true);
     //Enviar adição para servidor e banco interno

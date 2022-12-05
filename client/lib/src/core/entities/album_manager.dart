@@ -21,8 +21,8 @@ class AlbumManager{
 
     //Calcular dados
     for(int i =0; i < 38; i++){
-      if(albumView!.colectionStickers.containsKey(i)){
-        for(Sticker sticker in (albumView!.colectionStickers[i] as List<Sticker>)) {
+      if(albumView!.collectionStickers.containsKey(i)){
+        for(Sticker sticker in (albumView!.collectionStickers[i] as List<Sticker>)) {
           if(sticker.quantity > 0) {
             obtidas += 1;
             repetidas += sticker.quantity - 1;

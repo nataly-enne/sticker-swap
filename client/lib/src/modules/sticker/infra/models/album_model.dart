@@ -8,7 +8,7 @@ class AlbumModel extends Album{
 
     for(int group =0; group <38; group++){
       if(json.containsKey("$group")){
-        albumModel.colectionStickers[group] =
+        albumModel.collectionStickers[group] =
             StickerModel.listFromJson(json["$group"]);
       }
     }

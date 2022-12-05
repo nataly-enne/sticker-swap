@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/chat/presenter/chat_module.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/home_bloc.dart';
 import 'package:sticker_swap_client/src/modules/home/presenter/widgets/home_bottom_navigator_bar.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends ModularState<HomeScreen, HomeBloc> {
   Auth auth = Modular.get<Auth>();
+  User user = Modular.get<User>();
 
   @override
   void dispose() {

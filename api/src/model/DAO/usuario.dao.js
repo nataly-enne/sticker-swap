@@ -1,12 +1,24 @@
 const { response } = require('express');
 const db = require('../../utils/db')
 const Usuario = require('../usuario.model')
+var md5 = require('md5');
+require('dotenv/config');
+
 
 async function inserirUsuario(usuario) {
     let query = "INSERT INTO user SET password = " + db.mysql.escape(usuario.password) + ", email = " + db.mysql.escape(usuario.email);
     connection = db.connect();
     await connection.query(query);
     connection.end(); 
+
+
+    new_user = await recuperaUsuarioPorEmail(usuario.email); 
+
+    await db.mongo_client.connect();
+    const mdb = db.mongo_client.db(process.env.MONGO_DB);
+    const collection = mdb.collection('User');
+    await collection.insertOne({email: usuario.email, _id: new_user.id});
+    await db.mongo_client.close()
 }
 
 async function listarUsuarios() {
@@ -24,7 +36,7 @@ async function listarUsuarios() {
 
 
 async function recuperaUsuarioPorId(id) {
-    let query = "SELECT * FROM usuario WHERE id = "+ db.mysql.escape(id);
+    let query = "SELECT * FROM user WHERE id = "+ db.mysql.escape(id);
     connection = db.connect();
     let response = await connection.query(query);
     connection.end();

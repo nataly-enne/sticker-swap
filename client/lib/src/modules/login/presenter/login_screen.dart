@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sticker_swap_client/src/core/entities/user.dart';
 import 'package:sticker_swap_client/src/modules/login/config/api.dart';
 import 'package:sticker_swap_client/src/modules/login/presenter/login_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -15,6 +16,7 @@ class LoginState extends ModularState<Login, LoginBloc> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _validate = true;
+  User user = Modular.get<User>();
   Auth auth = Modular.get<Auth>();
 
   @override
@@ -90,6 +92,7 @@ class LoginState extends ModularState<Login, LoginBloc> {
                       return;
                     }
                     auth.token = response!['token'];
+                    user.id = response['id'];
                     controller.verifyAuth();
                   },
                 )),
