@@ -36,7 +36,8 @@ async function cadastroUsuario(body, res) {
             console.log(e);
             return res.status(400).send({msg: 'Bad request'});
         }finally{
-            return res.status(201).send({msg: 'OK'});
+            let novo_usuario = await usuarioDAO.recuperaUsuarioPorEmail(body.email);
+            return res.status(201).send({msg: 'OK', id: novo_usuario.id});
         }
     });  
 }

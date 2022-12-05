@@ -89,6 +89,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
                       return;
                     }
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => RandomNumber(token: jwt)));
+                    controller.setUpAlbum(response!['id']);
                     controller.verifyAuth();
                   },
                 )),

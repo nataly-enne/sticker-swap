@@ -3,6 +3,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
+import 'package:sticker_swap_client/src/core/entities/album.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/usecases/generate_base_album.dart';
+import 'package:sticker_swap_client/src/modules/sticker/domain/usecases/get_album.dart';
 
 class RegisterBloc{
   void verifyAuth()=> Modular.to.pushReplacementNamed("/login/");
@@ -36,5 +39,10 @@ class RegisterBloc{
     }
 
     return null;
+  }
+
+  void setUpAlbum(userId){
+    Album novo = generateAlbum();
+    postAlbum(userId, novo.toMap());
   }
 }
