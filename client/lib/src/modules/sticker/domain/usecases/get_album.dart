@@ -62,7 +62,7 @@ class GetAlbumImpl extends IGetAlbum{
       collectionStickers[i] = StickerModel.listFromJson(response!['collectionStickers'][i]);
     }
 
-    album.colectionStickers = collectionStickers ;
+    album.collectionStickers = collectionStickers ;
 
     return album;
   }

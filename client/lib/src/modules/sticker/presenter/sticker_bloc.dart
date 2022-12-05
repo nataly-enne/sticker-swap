@@ -56,20 +56,20 @@ class StickerBloc{
     List<Sticker> sticksGroup = [];
     albumManager.albumView = albumManager.album;
     Album album = Album();
-    album.colectionStickers = {};
+    album.collectionStickers = {};
 
     for(int i =0; i < 38; i++){
       sticksGroup.clear();
 
-      if(albumManager.albumView!.colectionStickers.containsKey(i)){
-        for(Sticker sticker in (albumManager.albumView!.colectionStickers[i] as List<Sticker>)) {
+      if(albumManager.albumView!.collectionStickers.containsKey(i)){
+        for(Sticker sticker in (albumManager.albumView!.collectionStickers[i] as List<Sticker>)) {
           if(sticker.text.contains(searchController.text.toUpperCase()))
             sticksGroup.add(sticker);
         }
       }
 
       if(sticksGroup.isNotEmpty)
-        album.colectionStickers[i] = List.from(sticksGroup);
+        album.collectionStickers[i] = List.from(sticksGroup);
     }
 
     albumManager.albumView = album;

@@ -29,8 +29,6 @@ router.put("/usuario/:id/album", async function(req, res){
 });
 
 router.post("/usuario/:id/album", async function(req, res){
-    let id = (await usuarioController.authToken(req)).id;
-    if (!id || id != req.params.id) return res.status(403).send("Acesso negado");
     return res.send(await albumController.postAlbum(req.params.id, req.body));
 });
 

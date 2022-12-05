@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'sticker.g.dart';
+
+@JsonSerializable()
 class Sticker {
   int id;
   int idGroup;
@@ -16,4 +20,7 @@ class Sticker {
       "quantity": this.quantity,
     };
   }
+
+  factory Sticker.fromJson(Map<String, dynamic> json) => _$StickerFromJson(json);
+  Map<String, dynamic> toJson() => _$StickerToJson(this);
 }

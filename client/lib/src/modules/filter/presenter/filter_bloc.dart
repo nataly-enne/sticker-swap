@@ -42,22 +42,22 @@ class FilterBloc{
     Album albumView = Album();
 
     if(filter.filterOn){
-      albumView.colectionStickers = {};
+      albumView.collectionStickers = {};
 
       List<Sticker> sticksGroup = [];
 
       for(int i =0; i < 38; i++){
         sticksGroup.clear();
 
-        if(album.colectionStickers.containsKey(i)){
-          for(Sticker sticker in (album.colectionStickers[i] as List<Sticker>)) {
+        if(album.collectionStickers.containsKey(i)){
+          for(Sticker sticker in (album.collectionStickers[i] as List<Sticker>)) {
             if(functionFilter(sticker))
               sticksGroup.add(sticker);
           }
         }
 
         if(sticksGroup.isNotEmpty)
-          albumView.colectionStickers[i] = List.from(sticksGroup);
+          albumView.collectionStickers[i] = List.from(sticksGroup);
       }
 
     }else{

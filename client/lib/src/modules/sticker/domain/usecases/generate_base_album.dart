@@ -9,7 +9,7 @@ Album generateAlbum(){
 
     Map<int, List<StickerModel>> collectionStickers = Map<int, List<StickerModel>>();
 
-    album.colectionStickers = {
+    album.collectionStickers = {
       0 : [
         Sticker(id: 0, text: "00", idGroup: 0, quantity: 0),
         Sticker(id: 2, text: "FWC 1", idGroup: 0, quantity: 0),

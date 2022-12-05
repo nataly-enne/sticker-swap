@@ -103,7 +103,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
     return Column(
       children: [
        for(int i = controller.firstGroup; i <= controller.lastGroup; i++)
-         if(controller.albumManager.albumView!.colectionStickers.containsKey(i))
+         if(controller.albumManager.albumView!.collectionStickers.containsKey(i))
            Padding(
              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10),
              child: Wrap(
@@ -125,7 +125,7 @@ class _StickerScreenState extends ModularState<StickerScreen, StickerBloc> {
                    ],
                  ),
 
-                 for(Sticker sticker in (controller.albumManager.albumView!.colectionStickers[i] as List<Sticker>))
+                 for(Sticker sticker in (controller.albumManager.albumView!.collectionStickers[i] as List<Sticker>))
                    ElementSticker(
                      sticker: sticker,
                      addSticker: controller.addSticker,
