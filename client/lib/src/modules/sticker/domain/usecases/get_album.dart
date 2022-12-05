@@ -36,6 +36,18 @@ abstract class IGetAlbum{
 
     return null;
   }
+
+    Future<Map?> putAlbum(userId, collectionStickers) async{
+    Dio dio = new Dio();
+    var response = await dio.put('${dotenv.env['API_URI']!}/api/usuario/${userId}/album', data: {'collectionStickers': collectionStickers});
+    if(response.statusCode == 201){
+      var decodedResponse = response.data as Map;
+      //debugPrint(decodedResponse['token']);
+      return decodedResponse;
+    }
+
+    return null;
+  }
   
 class GetAlbumImpl extends IGetAlbum{
   @override

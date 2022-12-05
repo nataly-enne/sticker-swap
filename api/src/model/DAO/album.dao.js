@@ -9,7 +9,7 @@ async function postAlbum(userId, body) {
     await db.mongo_client.connect();
     const mdb = db.mongo_client.db(process.env.MONGO_DB);
     const collection = mdb.collection('Album');
-    await collection.insertOne({userId: userId, collectionSticker: body.collectionSticker});
+    await collection.insertOne({userId: userId, collectionStickers: body.collectionStickers});
     await db.mongo_client.close()
 }
 
@@ -18,7 +18,7 @@ async function updateAlbum(userId, body) {
     await db.mongo_client.connect();
     const mdb = db.mongo_client.db(process.env.MONGO_DB);
     const collection = mdb.collection('Album');
-    await collection.updateOne({userId: userId}, {$set: {collectionSticker: body.collectionSticker}});
+    await collection.updateOne({userId: userId}, {$set: {collectionStickers: body.collectionStickers}});
     await db.mongo_client.close()
 }
 
