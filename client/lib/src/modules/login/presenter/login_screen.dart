@@ -8,13 +8,15 @@ import '../../../core/entities/auth.dart';
 
 
 class Login extends StatefulWidget {
+  const Login({super.key});
+
   @override
   LoginState createState() => LoginState();
 }
 
 class LoginState extends ModularState<Login, LoginBloc> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   bool _validate = true;
   User user = Modular.get<User>();
   Auth auth = Modular.get<Auth>();
@@ -22,10 +24,11 @@ class LoginState extends ModularState<Login, LoginBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Log in'),
-        ),
-        body: Column(
+      appBar: AppBar(
+        title: const Text('Log in'),
+      ),
+      body: SingleChildScrollView (
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
@@ -41,7 +44,7 @@ class LoginState extends ModularState<Login, LoginBloc> {
                       borderRadius: BorderRadius.circular(90.0),
                     ),
                     labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: const Icon(Icons.email),
                     hintText: 'email@example.com',
                     errorText: !_validate ? "Formato inválido" : null
                 ),
@@ -57,7 +60,7 @@ class LoginState extends ModularState<Login, LoginBloc> {
                       borderRadius: BorderRadius.circular(90.0),
                     ),
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.key),
+                    prefixIcon: const Icon(Icons.key),
                 ),
               ),
             ),
@@ -67,7 +70,7 @@ class LoginState extends ModularState<Login, LoginBloc> {
               padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
               child: TextButton(
                   onPressed: () {controller.toRecoverScreen();},
-                  child: Text(
+                  child: const Text(
                     'Esqueceu a senha?',
                     style: TextStyle(color: Color.fromARGB(255, 31, 114, 240)),
                   ),
@@ -104,10 +107,10 @@ class LoginState extends ModularState<Login, LoginBloc> {
               ),
             ),
           ],
-        ));
-
+        )
+      )
+    );
   }
-
 }
 
 
@@ -142,7 +145,7 @@ class RandomNumberState extends State<RandomNumber>{
               width: 500,
               height: 500,
               child: TextField(
-                  decoration: InputDecoration(border: InputBorder.none),
+                  decoration: const InputDecoration(border: InputBorder.none),
                   controller: _randomNumber,
                   readOnly: true
               ),

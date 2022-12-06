@@ -4,23 +4,26 @@ import 'package:sticker_swap_client/src/modules/register/presenter/register_bloc
 import 'package:flutter_modular/flutter_modular.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
   RegisterScreenState createState() => RegisterScreenState();
 }
 
 class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _password_confirm = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _password_confirm = TextEditingController();
   bool _validate = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Registrar-se'),
-        ),
-        body: Column(
+      appBar: AppBar(
+        title: const Text('Registrar-se'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
@@ -36,7 +39,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
                       borderRadius: BorderRadius.circular(90.0),
                     ),
                     labelText: 'Email', 
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: const Icon(Icons.email),
                     hintText: 'email@example.com',
                     errorText: !_validate ? "Formato inválido" : null
                 ),
@@ -52,7 +55,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
                       borderRadius: BorderRadius.circular(90.0),
                     ),
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.key),
+                    prefixIcon: const Icon(Icons.key),
                 ),
               ),
             ),
@@ -66,7 +69,7 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
                       borderRadius: BorderRadius.circular(90.0),
                     ),
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.key),
+                    prefixIcon: const Icon(Icons.key),
                 ),
               ),
             ),
@@ -94,10 +97,10 @@ class RegisterScreenState extends ModularState<RegisterScreen, RegisterBloc> {
                   },
                 )),
           ],
-        ));
-
+        )
+      )
+    );
   }
-
 }
 
 
@@ -115,7 +118,7 @@ class RandomNumber extends StatefulWidget {
 
 class RandomNumberState extends State<RandomNumber>{
 
-  TextEditingController _randomNumber = TextEditingController();
+  final TextEditingController _randomNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +135,7 @@ class RandomNumberState extends State<RandomNumber>{
               width: 500,
               height: 500,
               child: TextField(
-                  decoration: InputDecoration(border: InputBorder.none),
+                  decoration: const InputDecoration(border: InputBorder.none),
                   controller: _randomNumber,
                   readOnly: true
               ),
