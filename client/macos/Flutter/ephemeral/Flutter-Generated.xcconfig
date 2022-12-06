@@ -2,10 +2,12 @@
 FLUTTER_ROOT=/Users/natalyenne/Downloads/flutter
 FLUTTER_APPLICATION_PATH=/Users/natalyenne/Documents/College/dispositivos_moveis/sticker-swap/client
 COCOAPODS_PARALLEL_CODE_SIGN=true
+FLUTTER_TARGET=/Users/natalyenne/Documents/College/dispositivos_moveis/sticker-swap/client/lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
+DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=.dart_tool/package_config.json
+PACKAGE_CONFIG=/Users/natalyenne/Documents/College/dispositivos_moveis/sticker-swap/client/.dart_tool/package_config.json

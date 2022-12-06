@@ -6,7 +6,9 @@ class MessagePlaceModel extends MessagePlace {
       required super.place,
       required super.status,
       required super.id,
-      required super.idSender});
+      required super.idSender,
+      required super.date,
+      });
 
   factory MessagePlaceModel.fromMap(Map<String, dynamic> map) {
     return MessagePlaceModel(
@@ -15,6 +17,7 @@ class MessagePlaceModel extends MessagePlace {
       place: map['place'],
       status: map['status'],
       idSender: map['idSender'],
+      date: map['date'],
     );
   }
 }
